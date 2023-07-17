@@ -1,0 +1,97 @@
+.offer-single {
+  display: flex;
+
+  justify-content: space-around;
+  background-color: #ebedee;
+}
+
+.offer-single img {
+  height: 60rem;
+  width: 60rem;
+}
+
+.offer-text {
+  width: 40rem;
+  height: 60rem;
+  background-color: white;
+}
+
+.offer-text .price {
+  font-size: 2.4rem;
+  color: #111111;
+}
+
+.offer-text > :first-child {
+  height: 27rem;
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 3.5rem;
+  gap: 1.5rem;
+}
+
+.offer-details {
+  font-size: 1.4rem;
+}
+
+.offer-details > div > div:first-of-type {
+  color: #999999;
+}
+
+.offer-details > div > div:last-of-type {
+  font-weight: bold;
+  color: #666666;
+}
+
+.offer-details > div {
+  display: flex;
+  width: 30rem;
+  justify-content: space-between;
+
+  margin-bottom: 0.5rem;
+  gap: 3rem;
+}
+
+.offer-details > div > div {
+  width: 50%;
+}
+
+.offer-text > :last-child {
+  height: calc(100% - 27rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.offer-title {
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 4rem;
+  margin-left: 3.5rem;
+  height: 15rem;
+
+  font-size: 1.6rem;
+}
+
+.offer-title span:first-of-type {
+  font-weight: bold;
+}
+
+.offer-title span:nth-last-of-type(2) {
+  color: #666666;
+}
+
+.offer-text button {
+  width: 32rem;
+  height: 3.5rem;
+  font-size: 1.6rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.carousel-container {
+  width: 60rem;
+  height: 60rem;
+}

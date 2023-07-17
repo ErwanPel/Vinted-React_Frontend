@@ -1,0 +1,63 @@
+main > p {
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: bold;
+}
+
+.offers-bloc {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+main.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.offer-home {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 23.5rem;
+  height: 45rem;
+  margin-bottom: 3rem;
+}
+
+.offer-home img {
+  object-fit: cover;
+  width: 100%;
+  height: 36rem;
+}
+
+.offer-home div:last-of-type {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.offer-home:hover {
+  cursor: pointer;
+}
+
+.offer-home span:not(.price) {
+  font-size: 1.2rem;
+  color: #999999;
+}
+
+.offer-home .price {
+  font-size: 1.4rem;
+}
+
+select {
+  width: 15rem;
+  height: 5rem;
+  text-align: center;
+  margin: 0 auto;
+  background-color: #09b1ba;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 4rem;
+}
