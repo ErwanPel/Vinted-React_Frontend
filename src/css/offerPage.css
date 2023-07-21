@@ -5,9 +5,15 @@
   background-color: #ebedee;
 }
 
-.offer-single img {
+.bloc-img-offer {
   height: 60rem;
   width: 60rem;
+}
+
+.offer-single img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .offer-text {

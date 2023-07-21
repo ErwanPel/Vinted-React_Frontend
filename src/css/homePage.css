@@ -1,4 +1,4 @@
-main > p {
+main.offer-card > p {
   margin: 0 auto;
   padding: 2rem;
   font-weight: bold;
@@ -11,10 +11,10 @@ main > p {
   gap: 1.2rem;
 }
 
-main.wrapper {
+main.offer-card {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .offer-home {
@@ -60,4 +60,23 @@ select {
   color: white;
   border-radius: 5px;
   margin-bottom: 4rem;
+}
+
+.offer-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  min-height: 4rem;
+}
+
+.offer-user img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+select:hover {
+  cursor: pointer;
 }

@@ -1,7 +1,10 @@
 *,
 a,
 span,
-p {
+p,
+h2,
+input,
+button {
   font-family: "Maison-Neue";
 }
 
@@ -26,4 +29,13 @@ a {
 
 button:hover {
   cursor: pointer;
+}
+
+.app {
+  position: relative;
+}
+
+h2 {
+  font-size: 2.4rem;
+  margin-bottom: 4rem;
 }

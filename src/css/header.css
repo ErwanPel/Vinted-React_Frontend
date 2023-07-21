@@ -29,3 +29,10 @@ header button {
   background-color: #09b1ba;
   color: white;
 }
+
+.disconnect-button {
+  border: transparent;
+  border-radius: 5px;
+  background-color: #c2175b;
+  color: white;
+}
