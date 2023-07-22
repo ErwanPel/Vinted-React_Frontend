@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
 export default function Header({
-  isConnected,
-  setIsConnected,
+  userToken,
+  setUserToken,
   visibleConnectModal,
   setVisibleConnectModal,
   visibleSignModal,
@@ -13,7 +13,7 @@ export default function Header({
 }) {
   const removeCookies = () => {
     Cookies.remove("token");
-    setIsConnected(() => false);
+    setUserToken(() => "");
   };
 
   const getSignModal = () => {
@@ -32,7 +32,7 @@ export default function Header({
       </div>
       <div>RECHERCHER</div>
 
-      {!isConnected ? (
+      {!userToken ? (
         <div className="user-log-create">
           <button onClick={getSignModal}>S'inscrire</button>
           <button onClick={getConnectModal}>Se connecter</button>
@@ -44,7 +44,7 @@ export default function Header({
           </button>
         </div>
       )}
-      <Link to={isConnected ? "/offer/publish" : "/user/signup"}>
+      <Link to={userToken ? "/offer/publish" : "/user/signup"}>
         <button className="sell-button">Vends tes articles</button>
       </Link>
     </header>

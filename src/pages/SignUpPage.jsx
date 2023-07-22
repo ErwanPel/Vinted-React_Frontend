@@ -6,7 +6,12 @@ import Cookies from "js-cookie";
 
 import "../css/signup-connect.css";
 
-export default function SignUpPage({ isConnected, setIsConnected }) {
+export default function SignUpPage({
+  setUserToken,
+  visibleSignModal,
+  setVisibleSignModal,
+  closeModalSign,
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,18 +21,22 @@ export default function SignUpPage({ isConnected, setIsConnected }) {
   const navigate = useNavigate();
 
   const handleName = (event) => {
+    setErrorMessage(() => "");
     setName(() => event.target.value);
   };
 
   const handleMail = (event) => {
+    setErrorMessage(() => "");
     setEmail(() => event.target.value);
   };
 
   const handlePassword = (event) => {
+    setErrorMessage(() => "");
     setPassword(() => event.target.value);
   };
 
   const handleNewsletter = (event) => {
+    setErrorMessage(() => "");
     setNewsLetter(() => event.target.checked);
   };
 
@@ -38,11 +47,16 @@ export default function SignUpPage({ isConnected, setIsConnected }) {
         "https://site--backend-vinted--fwddjdqr85yq.code.run/user/signup",
         data
       );
-      console.log(response.data);
       Cookies.set("token", response.data.token, { expires: 1 });
-      setIsConnected(() => true);
+      setUserToken(() => response.data.token);
+      if (visibleSignModal) setVisibleSignModal(() => false);
+      setName(() => "");
+      setEmail(() => "");
+      setPassword(() => "");
+      setNewsLetter(() => "");
+      navigate("/");
     } catch (error) {
-      console.error(error);
+      setErrorMessage("L'adresse mail est déjà utilisée.");
     }
   };
 
@@ -70,20 +84,11 @@ export default function SignUpPage({ isConnected, setIsConnected }) {
         newsletter: newsletter,
       });
       setMailAdmin({ username: name, email: email, newsletter: newsletter });
-      setName(() => "");
-      setEmail(() => "");
-      setPassword(() => "");
-      setNewsLetter(() => "");
-
-      navigate("/");
-    } else {
-      setErrorMessage(() => "Veuillez remplir le(s) champ(s) manquant(s)");
     }
   };
 
-  console.log(name);
   return (
-    <div className="modal-content wrapper">
+    <div className="form-bloc wrapper">
       <h2>S'inscrire</h2>
       <form
         // action="https://site--backend-vinted--fwddjdqr85yq.code.run/user/signup"
@@ -140,7 +145,7 @@ export default function SignUpPage({ isConnected, setIsConnected }) {
         </p>
         <button>S'inscrire</button>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <Link to="/user/login">
+        <Link to="/user/login" onClick={visibleSignModal && closeModalSign}>
           <span className="question-user">
             Tu as déjà un compte ? Connecte-toi !
           </span>

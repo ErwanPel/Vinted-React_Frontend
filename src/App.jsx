@@ -14,9 +14,7 @@ import ConnexionPage from "./pages/ConnexionPage";
 import PublishOffer from "./pages/PublishOffer";
 
 function App() {
-  const [isConnected, setIsConnected] = useState(
-    Cookies.get("token") ? true : false
-  );
+  const [userToken, setUserToken] = useState(Cookies.get("token") || "");
   const [visibleConnectModal, setVisibleConnectModal] = useState(false);
   const [visibleSignModal, setVisibleSignModal] = useState(false);
 
@@ -24,33 +22,23 @@ function App() {
     <div className="app">
       <Router>
         <Header
-          isConnected={isConnected}
-          setIsConnected={setIsConnected}
+          userToken={userToken}
+          setUserToken={setUserToken}
           visibleConnectModal={visibleConnectModal}
           setVisibleConnectModal={setVisibleConnectModal}
           visibleSignModal={visibleSignModal}
           setVisibleSignModal={setVisibleSignModal}
         />
         <Routes>
-          <Route path="/" element={<HomePage isConnected={isConnected} />} />
+          <Route path="/" element={<HomePage userToken={userToken} />} />
           <Route path="/offer/:id" element={<OfferPage />} />
           <Route
             path="/user/signup"
-            element={
-              <SignUpPage
-                isConnected={isConnected}
-                setIsConnected={setIsConnected}
-              />
-            }
+            element={<SignUpPage setUserToken={setUserToken} />}
           />
           <Route
             path="/user/login"
-            element={
-              <ConnexionPage
-                isConnected={isConnected}
-                setIsConnected={setIsConnected}
-              />
-            }
+            element={<ConnexionPage setUserToken={setUserToken} />}
           />
           <Route path="/offer/publish" element={<PublishOffer />} />
         </Routes>
@@ -58,12 +46,12 @@ function App() {
           <Modal
             visibleConnectModal={visibleConnectModal}
             setVisibleConnectModal={setVisibleConnectModal}
-            setIsConnected={setIsConnected}
+            setUserToken={setUserToken}
           />
         )}
         {visibleSignModal && (
           <Modal
-            setIsConnected={setIsConnected}
+            setUserToken={setUserToken}
             visibleSignModal={visibleSignModal}
             setVisibleSignModal={setVisibleSignModal}
           />
