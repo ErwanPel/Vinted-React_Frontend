@@ -12,8 +12,16 @@ import SignUpPage from "./pages/SignUpPage";
 import Modal from "./components/Modal";
 import ConnexionPage from "./pages/ConnexionPage";
 import PublishOffer from "./pages/PublishOffer";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
+library.add(faArrowDown, faArrowUp);
 function App() {
+  const [query, setQuery] = useState({
+    page: 1,
+    sort: 1,
+    values: [0, 100],
+  });
   const [userToken, setUserToken] = useState(Cookies.get("token") || "");
   const [visibleConnectModal, setVisibleConnectModal] = useState(false);
   const [visibleSignModal, setVisibleSignModal] = useState(false);
@@ -28,9 +36,20 @@ function App() {
           setVisibleConnectModal={setVisibleConnectModal}
           visibleSignModal={visibleSignModal}
           setVisibleSignModal={setVisibleSignModal}
+          query={query}
+          setQuery={setQuery}
         />
         <Routes>
-          <Route path="/" element={<HomePage userToken={userToken} />} />
+          <Route
+            path="/"
+            element={
+              <HomePage
+                userToken={userToken}
+                query={query}
+                setQuery={setQuery}
+              />
+            }
+          />
           <Route path="/offer/:id" element={<OfferPage />} />
           <Route
             path="/user/signup"

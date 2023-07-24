@@ -1,10 +1,28 @@
-main.offer-card > p {
+main.offer-bloc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 4rem;
+}
+main.offer-bloc > div:first-of-type {
+  align-self: center;
+}
+
+main.offer-bloc > div > p,
+label {
   margin: 0 auto;
   padding: 2rem;
   font-weight: bold;
 }
 
-.offers-bloc {
+main.offer-bloc > div > p {
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: bold;
+}
+
+.offers-card {
   margin-top: 4rem;
   display: flex;
   flex-wrap: wrap;
