@@ -5,6 +5,7 @@ import SlideRange from "./SlideRange";
 import Toggle from "react-toggle";
 import CheckedIcon from "./CheckedIcon";
 import UncheckedIcon from "./UncheckedIcon";
+import { useNavigate } from "react-router-dom";
 
 import "react-toggle/style.css";
 import "../css/header.css";
@@ -18,12 +19,15 @@ export default function Header({
   setVisibleSignModal,
   query,
   setQuery,
-  values,
-  setValues,
+  sellPage,
+  setSellPage,
 }) {
+  const navigate = useNavigate();
+
   const removeCookies = () => {
     Cookies.remove("token");
-    setUserToken(() => "");
+    setUserToken("");
+    navigate("/");
   };
 
   const getSignModal = () => {
@@ -69,9 +73,12 @@ export default function Header({
             onChange={handleTitle}
           />
         </div>
-        <div>
+        <div className="price-search-bloc">
           <div className="checkbox-sort">
-            <label htmlFor="sort">Trier par prix : </label>
+            <div>
+              <label htmlFor="sort">Trier par prix : </label>
+            </div>
+
             <Toggle
               type="checkbox"
               name="sort"
@@ -85,8 +92,17 @@ export default function Header({
             />
           </div>
           <div className="range-bloc">
-            <label htmlFor="priceRange">Prix entre : </label>
-            <SlideRange id="priceRange" query={query} setQuery={setQuery} />
+            <div>
+              {" "}
+              <label htmlFor="priceRange">Prix entre : </label>
+            </div>
+
+            <SlideRange
+              className="range-bar"
+              id="priceRange"
+              query={query}
+              setQuery={setQuery}
+            />
           </div>
         </div>
       </div>
@@ -104,7 +120,12 @@ export default function Header({
         </div>
       )}
       <Link to={userToken ? "/offer/publish" : "/user/signup"}>
-        <button className="sell-button">Vends tes articles</button>
+        <button
+          className="sell-button"
+          onClick={!userToken && setSellPage(true)}
+        >
+          Vends tes articles
+        </button>
       </Link>
     </header>
   );

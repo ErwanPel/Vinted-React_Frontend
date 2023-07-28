@@ -1,0 +1,137 @@
+main.publish {
+  background-color: #ebedee;
+  padding-top: 4rem;
+}
+
+.publish-form > p {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.publish-form:not(button) {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.publish-form > div {
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  gap: 1rem;
+  background-color: white;
+}
+
+.publish-form > div > div:not(.exchange-field) {
+  display: flex;
+
+  padding-bottom: 2rem;
+}
+
+.exchange-field {
+  width: 52%;
+  align-self: flex-end;
+}
+
+.publish-form > div > div:not(.price-field, :last-of-type) {
+  border-bottom: 1px solid #ccc;
+}
+
+.publish-formlabel:not(label[for="exchange"]) {
+  width: 50%;
+  font-size: 1.4rem;
+}
+
+label[for="exchange"] {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.publish-form input:not(input[type="file"], input[name="exchange"]) {
+  width: 50%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+input[name="description"] {
+  height: 10rem;
+}
+
+.publish-form button {
+  height: 4rem;
+  width: 8rem;
+  align-self: flex-end;
+}
+
+.publish-form .section-drop {
+  background-color: white;
+  height: 30rem;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.publish-form .div-drop {
+  border: 1px dashed #ccc;
+  height: 80%;
+  width: 95%;
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.publish-form .p-drop {
+  padding: 2rem;
+  border: 1px solid #2cb1ba;
+  color: #2cb1ba;
+  font-weight: bold;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.publish-form .text-drop-size {
+  font-size: 3rem;
+}
+
+.pict-view-bloc-publish {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.publish-form .pict-view {
+  width: 5rem;
+  height: 100%;
+  border: 1px solid black;
+  object-fit: contain;
+}
+
+.publish-form button.remove-picture {
+  height: 2rem;
+  width: 10rem;
+  top: initial;
+  bottom: 5px;
+}
+
+.pict-view-card {
+  position: relative;
+  height: 9rem;
+}
+
+button.delete-picture {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  right: 0;
+  background-color: #2cb1ba;
+  color: white;
+}

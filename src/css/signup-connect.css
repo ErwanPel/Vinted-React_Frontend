@@ -6,11 +6,8 @@
   align-items: center;
 }
 
-.form-bloc :is(input, button, span, p) {
-  margin-bottom: 4rem;
-}
-
-.form-bloc input:not(input[type="checkbox"]) {
+.form-bloc
+  :is(input[type="text"], input[type="password"], input[type="email"]) {
   width: 28rem;
   height: 4rem;
   border: none;
@@ -22,26 +19,27 @@
 .newsletter-item {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  width: 28rem;
-  height: 4rem;
+  gap: 4rem;
+  width: fit-content;
+  align-self: flex-start;
 }
 
-.newsletter-item > input {
+.newsletter-item input {
   transform: scale(2);
   outline: none;
+  margin-right: 2rem;
 }
 
-.newsletter-item > span {
+.newsletter-item label {
   font-size: 1.6rem;
   color: #666666;
 }
-.form-bloc p:not(.error-message) {
+.form-bloc p:not(.error-message, .p-drop) {
   font-size: 1.2rem;
   width: 28rem;
 }
 
-.form-bloc button:not(.close-button) {
+.form-bloc button:not(.close-button, .remove-picture) {
   width: 28rem;
   height: 4.5rem;
   border: transparent;
@@ -74,4 +72,71 @@
   border: none;
   background-color: transparent;
   font-size: 2rem;
+}
+
+.form-bloc .section-drop {
+  position: relative;
+  margin-block: 2rem;
+  background-color: white;
+  width: 28rem;
+  height: 16rem;
+  border: 1px solid #ccc;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.form-bloc img {
+  width: 5rem;
+}
+
+.remove-picture {
+  position: absolute;
+  top: 2px;
+  right: 15;
+  width: 5rem;
+  height: 2rem;
+  font-size: 1rem;
+  background-color: #2cb1ba;
+  color: white;
+  border: transparent;
+  border-radius: 5px;
+}
+
+.form-bloc .div-drop {
+  border: 1px dashed #ccc;
+  width: 93%;
+  height: 70%;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.form-bloc .p-drop {
+  border: 1px solid #2cb1ba;
+  height: fit-content;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-block: 1rem;
+}
+
+.form-bloc .text-drop-size {
+  font-size: 2rem;
+  color: #2cb1ba;
+}
+
+.form-bloc .p-drop > span {
+  color: #2cb1ba;
+}
+
+.form-bloc-down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
 }

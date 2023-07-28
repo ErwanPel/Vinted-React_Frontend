@@ -41,45 +41,44 @@ header button {
   display: flex;
   flex-direction: column;
 
-  height: 10rem;
   width: 64rem;
+  height: 100%;
+}
+
+.price-search-bloc {
+  display: flex;
   justify-content: space-between;
 }
 
-.search-bloc > div:first-of-type input {
-  width: 100%;
-  height: 4rem;
-
-  background-color: #f5f6f7;
-}
-
-.search-bloc > div:last-of-type {
+.price-search-bloc > div {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-.search-bloc label {
   font-size: 1.2rem;
-}
-
-.search-bloc > div:last-of-type input[type="text"] {
-  width: 10rem;
 }
 
 .checkbox-sort {
+  margin-top: 2.5rem;
+}
+
+.checkbox-sort > div:first-of-type {
   display: flex;
+
+  height: 3rem;
   align-items: center;
-  width: 14rem;
 }
 
-.range-bloc {
+.range-bloc > div:first-of-type {
   display: flex;
-  align-items: flex-end;
-  font-size: 1.2rem;
-  gap: 2rem;
+
+  margin-top: 2.5rem;
 }
 
+.search-bloc div:first-of-type > input {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 4rem;
+  background-color: #e4e3e3;
+}
 .react-toggle--checked .react-toggle-track {
   background-color: #2cb1ba;
 }
@@ -98,9 +97,9 @@ header button {
 }
 
 .react-toggle-track-check {
-  height: 16px;
+  height: 12px;
 }
 
 .react-toggle-track-x {
-  height: 16px;
+  height: 12px;
 }

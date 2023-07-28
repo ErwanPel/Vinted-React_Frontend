@@ -11,6 +11,8 @@ export default function ConnexionPage({
   setVisibleConnectModal,
   closeModalConnect,
   visibleConnectModal,
+  sellPage,
+  setSellPage,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,7 +42,13 @@ export default function ConnexionPage({
       setUserToken(() => response.data.token);
       setEmail(() => "");
       setPassword(() => "");
-      navigate("/");
+      if (sellPage) {
+        navigate("/offer/publish");
+        setSellPage(false);
+      } else {
+        navigate("/");
+      }
+
       if (visibleConnectModal) setVisibleConnectModal(() => false);
     } catch (error) {
       setErrorMessage(error.response.data.message);
@@ -59,36 +67,44 @@ export default function ConnexionPage({
     <div className="form-bloc wrapper">
       <h2>Se connecter</h2>
       <form method="post" onSubmit={handleSubmit}>
-        <label htmlFor="email"></label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-          onChange={handleMail}
-          value={email}
-          required={true}
-        />
-        <label htmlFor="password"></label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Mot de passe"
-          onChange={handlePassword}
-          value={password}
-          required={true}
-        />
-        <button>Se connecter</button>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <Link
-          to="/user/signup"
-          onClick={visibleConnectModal && closeModalConnect}
-        >
-          <span className="question-user">
-            Pas encore de compte ? Inscris-toi !
-          </span>
-        </Link>
+        <label htmlFor="email">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            onChange={handleMail}
+            value={email}
+            required={true}
+          />
+        </label>
+
+        <label htmlFor="password">
+          {" "}
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Mot de passe"
+            onChange={handlePassword}
+            value={password}
+            required={true}
+          />
+        </label>
+
+        <div className="form-bloc-down">
+          {" "}
+          <button>Se connecter</button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <Link
+            to="/user/signup"
+            onClick={visibleConnectModal && closeModalConnect}
+          >
+            <span className="question-user">
+              Pas encore de compte ? Inscris-toi !
+            </span>
+          </Link>
+        </div>
       </form>
     </div>
   );

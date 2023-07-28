@@ -11,11 +11,15 @@ import Header from "./components/Header";
 import SignUpPage from "./pages/SignUpPage";
 import Modal from "./components/Modal";
 import ConnexionPage from "./pages/ConnexionPage";
-import PublishOffer from "./pages/PublishOffer";
+import Publish from "./pages/Publish";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowUp,
+  faArrowDown,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faArrowDown, faArrowUp);
+library.add(faArrowDown, faArrowUp, faPlus);
 function App() {
   const [query, setQuery] = useState({
     page: 1,
@@ -25,6 +29,7 @@ function App() {
   const [userToken, setUserToken] = useState(Cookies.get("token") || "");
   const [visibleConnectModal, setVisibleConnectModal] = useState(false);
   const [visibleSignModal, setVisibleSignModal] = useState(false);
+  const [sellPage, setSellPage] = useState(false);
 
   return (
     <div className="app">
@@ -38,6 +43,8 @@ function App() {
           setVisibleSignModal={setVisibleSignModal}
           query={query}
           setQuery={setQuery}
+          sellPage={sellPage}
+          setSellPage={setSellPage}
         />
         <Routes>
           <Route
@@ -53,13 +60,28 @@ function App() {
           <Route path="/offer/:id" element={<OfferPage />} />
           <Route
             path="/user/signup"
-            element={<SignUpPage setUserToken={setUserToken} />}
+            element={
+              <SignUpPage
+                setUserToken={setUserToken}
+                sellPage={sellPage}
+                setSellPage={setSellPage}
+              />
+            }
           />
           <Route
             path="/user/login"
-            element={<ConnexionPage setUserToken={setUserToken} />}
+            element={
+              <ConnexionPage
+                setUserToken={setUserToken}
+                sellPage={sellPage}
+                setSellPage={setSellPage}
+              />
+            }
           />
-          <Route path="/offer/publish" element={<PublishOffer />} />
+          <Route
+            path="/offer/publish"
+            element={<Publish userToken={userToken} />}
+          />
         </Routes>
         {visibleConnectModal && (
           <Modal
