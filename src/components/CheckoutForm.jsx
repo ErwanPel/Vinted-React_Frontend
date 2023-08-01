@@ -4,7 +4,7 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
 import intl from "../assets/tools/intl";
 
-import "../assets/css/CheckoutForm.css";
+import "../assets/css/checkoutForm.css";
 
 export default function CheckoutForm({ userToken, setOnPay }) {
   const [completed, setCompleted] = useState(false);
