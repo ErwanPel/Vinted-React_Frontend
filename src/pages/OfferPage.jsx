@@ -18,7 +18,12 @@ export default function OfferPage({ setOnPay, userToken }) {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://site--backend-vinted--fwddjdqr85yq.code.run/offer/${id}`
+        `https://site--backend-vinted--fwddjdqr85yq.code.run/offer/${id}`,
+        {
+          headers: {
+            authorization: `Bearer ${userToken}`,
+          },
+        }
       );
 
       setData(response.data);
@@ -52,9 +57,9 @@ export default function OfferPage({ setOnPay, userToken }) {
     },
   };
 
-  if (data?.bought === true) {
-    setTimeout(() => navigate("/"), 2000);
-  }
+  // if (data?.bought === true) {
+  //   setTimeout(() => navigate("/"), 2000);
+  // }
 
   return (
     <>
@@ -106,9 +111,13 @@ export default function OfferPage({ setOnPay, userToken }) {
             </div>
             <div>
               <div className="offer-title">
-                <span>{data.product_name}</span>
-                <span>{data.product_description}</span>
-                <span>{data.owner.account.username}</span>
+                {!data?.bought === true && (
+                  <>
+                    <span>{data.product_name}</span>
+                    <span>{data.product_description}</span>
+                    <span>{data.owner.account.username}</span>
+                  </>
+                )}
               </div>
 
               {console.log(data.owner._id)}

@@ -54,6 +54,7 @@ export default function Publish({ userToken }) {
           },
         }
       );
+      console.log(response.data);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -100,7 +101,7 @@ export default function Publish({ userToken }) {
     <main className="publish">
       <form action="" className="publish-form wrapper " onSubmit={handleSubmit}>
         <p>Vends ton article</p>
-        <Dropzone onDrop={handleFiles} maxFiles="6">
+        <Dropzone onDrop={handleFiles}>
           {({ getRootProps, getInputProps }) => (
             <section className="section-drop">
               <div className="div-drop" {...getRootProps()}>
