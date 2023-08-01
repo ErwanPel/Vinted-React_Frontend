@@ -13,7 +13,7 @@ import Modal from "./components/Modal";
 import LoginPage from "./pages/LoginPage";
 import Publish from "./pages/Publish";
 import PaymentPage from "./pages/PaymentPage";
-import BuyPage from "./pages/buyPage";
+import BuyPage from "./pages/BuyPage";
 import SoldPage from "./pages/SoldPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
