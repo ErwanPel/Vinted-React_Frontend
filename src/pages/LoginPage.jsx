@@ -4,7 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import "../assets/css/signup-Login.css";
+import "../assets/css/signup-login.css";
 
 export default function LoginPage({
   setUserToken,
