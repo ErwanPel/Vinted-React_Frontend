@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
+import { uid } from "react-uid";
 
 import "react-multi-carousel/lib/styles.css";
-import "../css/offerPage.css";
+import "../assets/css/offerPage.css";
 
-export default function OfferPage() {
+export default function OfferPage({ setOnPay, userToken }) {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   // This function return the result of the offer by ID
   const fetchData = async () => {
@@ -17,8 +19,9 @@ export default function OfferPage() {
       const response = await axios.get(
         `https://site--backend-vinted--fwddjdqr85yq.code.run/offer/${id}`
       );
-      console.log("offer", response.data);
+
       setData(response.data);
+      console.log(response.data);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -48,6 +51,10 @@ export default function OfferPage() {
     },
   };
 
+  if (data?.bought === true) {
+    setTimeout(() => navigate("/"), 2000);
+  }
+
   const intl = new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "EUR",
@@ -76,8 +83,8 @@ export default function OfferPage() {
             >
               {data.product_image.map((picture, index) => {
                 return (
-                  <div key={index} className="bloc-img-offer">
-                    <img src={picture.secure_url} alt="" />
+                  <div key={uid(picture)} className="bloc-img-offer">
+                    <img src={picture?.secure_url} alt="" />
                   </div>
                 );
               })}
@@ -88,9 +95,8 @@ export default function OfferPage() {
               <p className="price">{intl.format(data.product_price)}</p>
               <div className="offer-details">
                 {data.product_details.map((element, index) => {
-                  console.log(Object.keys(element), Object.values(element));
                   return (
-                    <div key={index + element}>
+                    <div key={uid(element)}>
                       <div>
                         <span>{Object.keys(element)[0]}</span>
                       </div>
@@ -108,7 +114,23 @@ export default function OfferPage() {
                 <span>{data.product_description}</span>
                 <span>{data.owner.account.username}</span>
               </div>
-              <button className="sell-button">Acheter</button>
+
+              {console.log(data.owner._id)}
+              {data.bought ? (
+                <p className="sold-warn">Déjà vendu !</p>
+              ) : (
+                <Link
+                  to="/payment"
+                  state={{
+                    price: data.product_price,
+                    sellerID: data.owner._id,
+                    name: data.product_name,
+                    productID: data._id,
+                  }}
+                >
+                  <button className="sell-button">Acheter</button>
+                </Link>
+              )}
             </div>
           </div>
         </main>

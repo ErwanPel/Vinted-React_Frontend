@@ -6,15 +6,13 @@ import Cookies from "js-cookie";
 import Dropzone from "react-dropzone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import "../css/signup-connect.css";
+import "../assets/css/signup-login.css";
 
 export default function SignUpPage({
   setUserToken,
   visibleSignModal,
   setVisibleSignModal,
   closeModalSign,
-  sellPage,
-  setSellPage,
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -43,9 +41,8 @@ export default function SignUpPage({
 
   const handleFile = (event) => {
     setPicture(event[0]);
-    console.log(event[0]);
+
     setPreviewPicture(URL.createObjectURL(event[0]));
-    console.log(previewPicture);
   };
 
   const handleNewsletter = (event) => {
@@ -55,13 +52,17 @@ export default function SignUpPage({
 
   // This function send the information to the server for create an account
   const setDataForm = async (data) => {
-    console.log("data", data);
     try {
       const response = await axios.post(
         "https://site--backend-vinted--fwddjdqr85yq.code.run/user/signup",
-        data
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
-      console.log("here", response.data);
+
       Cookies.set("token", response.data.token, { expires: 1 });
       setUserToken(() => response.data.token);
       if (visibleSignModal) setVisibleSignModal(() => false);
@@ -69,12 +70,7 @@ export default function SignUpPage({
       setEmail(() => "");
       setPassword(() => "");
       setNewsLetter(() => "");
-      if (sellPage) {
-        navigate("/offer/publish");
-        setSellPage(false);
-      } else {
-        navigate("/");
-      }
+      navigate("/");
     } catch (error) {
       console.log(error);
       setErrorMessage("L'adresse mail est déjà utilisée.");
@@ -84,12 +80,10 @@ export default function SignUpPage({
   // This function send a mail to the administrator
   const setMailAdmin = async (data) => {
     try {
-      console.log("mail");
       const response = await axios.post(
         "https://site--backend-vinted--fwddjdqr85yq.code.run/admin/form",
         data
       );
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -106,13 +100,13 @@ export default function SignUpPage({
       formData.append("password", password);
       formData.append("newsletter", newsletter);
 
-      // setDataForm(formData);
-      // setMailAdmin({ username: name, email: email, newsletter: newsletter });
+      setDataForm(formData);
+      setMailAdmin({ username: name, email: email, newsletter: newsletter });
     }
   };
 
   return (
-    <div className="form-bloc wrapper">
+    <main className={visibleSignModal ? "form-bloc" : "form-bloc wrapper"}>
       <h2>S'inscrire</h2>
       <form
         // action="https://site--backend-vinted--fwddjdqr85yq.code.run/user/signup"
@@ -161,6 +155,7 @@ export default function SignUpPage({
             <section className="section-drop">
               {previewPicture && (
                 <button
+                  type="button"
                   className="remove-picture"
                   onClick={() => {
                     setPreviewPicture(null);
@@ -215,6 +210,6 @@ export default function SignUpPage({
           </Link>
         </div>
       </form>
-    </div>
+    </main>
   );
 }

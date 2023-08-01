@@ -1,12 +1,12 @@
-import ConnexionPage from "../pages/ConnexionPage";
+import ConnexionPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 
-import "../css/signup-connect.css";
+import "../assets/css/signup-login.css";
 
 export default function Modal({
   setUserToken,
-  setVisibleConnectModal,
-  visibleConnectModal,
+  setVisibleLoginModal,
+  visibleLoginModal,
   visibleSignModal,
   setVisibleSignModal,
 }) {
@@ -14,21 +14,21 @@ export default function Modal({
     setVisibleSignModal(() => false);
   };
 
-  const closeModalConnect = () => {
-    setVisibleConnectModal(() => false);
+  const closeModalLogin = () => {
+    setVisibleLoginModal(() => false);
   };
 
   return (
     <div
       className="modal-bloc"
-      onClick={visibleConnectModal ? closeModalConnect : closeModalSign}
+      onClick={visibleLoginModal ? closeModalLogin : closeModalSign}
     >
       <div
         className="modal-content"
         onClick={(event) => event.stopPropagation()}
       >
-        {visibleConnectModal && (
-          <button className="close-button" onClick={closeModalConnect}>
+        {visibleLoginModal && (
+          <button className="close-button" onClick={closeModalLogin}>
             X
           </button>
         )}
@@ -37,12 +37,12 @@ export default function Modal({
             X
           </button>
         )}
-        {visibleConnectModal && (
+        {visibleLoginModal && (
           <ConnexionPage
-            visibleConnectModal={visibleConnectModal}
-            setVisibleConnectModal={setVisibleConnectModal}
+            visibleLoginModal={visibleLoginModal}
+            setVisibleLoginModal={setVisibleLoginModal}
             setUserToken={setUserToken}
-            closeModalConnect={closeModalConnect}
+            closeModalLogin={closeModalLogin}
           />
         )}
         {visibleSignModal && (

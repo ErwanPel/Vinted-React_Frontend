@@ -2,23 +2,22 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-import "../css/signup-connect.css";
+import "../assets/css/signup-Login.css";
 
-export default function ConnexionPage({
+export default function LoginPage({
   setUserToken,
-  setVisibleConnectModal,
-  closeModalConnect,
-  visibleConnectModal,
-  sellPage,
-  setSellPage,
+  setVisibleLoginModal,
+  closeModalLogin,
+  visibleLoginModal,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleMail = (event) => {
     setErrorMessage(() => "");
@@ -30,26 +29,32 @@ export default function ConnexionPage({
     setPassword(() => event.target.value);
   };
 
-  // This function send the login information to the server for connection
-  const setDataConnection = async (data) => {
+  // This function send the login information to the server for Loginion
+  const setDataLoginion = async (data) => {
     try {
       const response = await axios.post(
         "https://site--backend-vinted--fwddjdqr85yq.code.run/user/login",
         data
       );
-
+      console.log(response.data);
       Cookies.set("token", response.data.token);
       setUserToken(() => response.data.token);
       setEmail(() => "");
       setPassword(() => "");
-      if (sellPage) {
-        navigate("/offer/publish");
-        setSellPage(false);
+      if (location.state) {
+        navigate(location.state.from, {
+          state: {
+            price: location.state?.price,
+            name: location.state?.name,
+            sellerID: location.state?.sellerID,
+            productID: location.state?.productID,
+          },
+        });
       } else {
         navigate("/");
       }
 
-      if (visibleConnectModal) setVisibleConnectModal(() => false);
+      if (visibleLoginModal) setVisibleLoginModal(() => false);
     } catch (error) {
       setErrorMessage(error.response.data.message);
     }
@@ -59,13 +64,13 @@ export default function ConnexionPage({
     event.preventDefault();
     setErrorMessage(() => "");
     if (email && password) {
-      setDataConnection({ email: email, password: password });
+      setDataLoginion({ email: email, password: password });
     }
   };
 
   return (
-    <div className="form-bloc wrapper">
-      <h2>Se connecter</h2>
+    <main className={visibleLoginModal ? "form-bloc" : "form-bloc wrapper"}>
+      <h2>Se Connecter</h2>
       <form method="post" onSubmit={handleSubmit}>
         <label htmlFor="email">
           <input
@@ -94,11 +99,11 @@ export default function ConnexionPage({
 
         <div className="form-bloc-down">
           {" "}
-          <button>Se connecter</button>
+          <button>Se Connecter</button>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <Link
             to="/user/signup"
-            onClick={visibleConnectModal && closeModalConnect}
+            onClick={visibleLoginModal && closeModalLogin}
           >
             <span className="question-user">
               Pas encore de compte ? Inscris-toi !
@@ -106,6 +111,6 @@ export default function ConnexionPage({
           </Link>
         </div>
       </form>
-    </div>
+    </main>
   );
 }

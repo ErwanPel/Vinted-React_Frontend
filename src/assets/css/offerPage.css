@@ -101,3 +101,10 @@
   width: 60rem;
   height: 60rem;
 }
+
+.sold-warn {
+  border: transparent;
+  padding: 2rem;
+  border-radius: 5px;
+  background-color: lightcoral;
+}

@@ -2,34 +2,40 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 
-import "./css/App.css";
-import "./css/font.css";
+import "./assets/css/App.css";
+import "./assets/css/font.css";
 
 import HomePage from "./pages/HomePage";
 import OfferPage from "./pages/OfferPage";
 import Header from "./components/Header";
 import SignUpPage from "./pages/SignUpPage";
 import Modal from "./components/Modal";
-import ConnexionPage from "./pages/ConnexionPage";
+import LoginPage from "./pages/LoginPage";
 import Publish from "./pages/Publish";
+import PaymentPage from "./pages/PaymentPage";
+import BuyPage from "./pages/buyPage";
+import SoldPage from "./pages/SoldPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faArrowUp,
   faArrowDown,
   faPlus,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faArrowDown, faArrowUp, faPlus);
+library.add(faArrowDown, faArrowUp, faPlus, faUser);
 function App() {
   const [query, setQuery] = useState({
     page: 1,
     sort: 1,
     values: [0, 100],
+    limit: 20,
   });
   const [userToken, setUserToken] = useState(Cookies.get("token") || "");
-  const [visibleConnectModal, setVisibleConnectModal] = useState(false);
+  const [visibleLoginModal, setVisibleLoginModal] = useState(false);
   const [visibleSignModal, setVisibleSignModal] = useState(false);
   const [sellPage, setSellPage] = useState(false);
+  const [onPay, setOnPay] = useState(false);
 
   return (
     <div className="app">
@@ -37,14 +43,16 @@ function App() {
         <Header
           userToken={userToken}
           setUserToken={setUserToken}
-          visibleConnectModal={visibleConnectModal}
-          setVisibleConnectModal={setVisibleConnectModal}
+          visibleLoginModal={visibleLoginModal}
+          setVisibleLoginModal={setVisibleLoginModal}
           visibleSignModal={visibleSignModal}
           setVisibleSignModal={setVisibleSignModal}
           query={query}
           setQuery={setQuery}
           sellPage={sellPage}
           setSellPage={setSellPage}
+          onPay={onPay}
+          setOnPay={setOnPay}
         />
         <Routes>
           <Route
@@ -54,39 +62,43 @@ function App() {
                 userToken={userToken}
                 query={query}
                 setQuery={setQuery}
+                setOnPay={setOnPay}
               />
             }
           />
-          <Route path="/offer/:id" element={<OfferPage />} />
+          <Route
+            path="/offer/:id"
+            element={<OfferPage setOnPay={setOnPay} userToken={userToken} />}
+          />
           <Route
             path="/user/signup"
-            element={
-              <SignUpPage
-                setUserToken={setUserToken}
-                sellPage={sellPage}
-                setSellPage={setSellPage}
-              />
-            }
+            element={<SignUpPage setUserToken={setUserToken} />}
           />
           <Route
             path="/user/login"
-            element={
-              <ConnexionPage
-                setUserToken={setUserToken}
-                sellPage={sellPage}
-                setSellPage={setSellPage}
-              />
-            }
+            element={<LoginPage setUserToken={setUserToken} />}
           />
           <Route
             path="/offer/publish"
             element={<Publish userToken={userToken} />}
           />
+          <Route
+            path="/payment"
+            element={
+              <PaymentPage
+                userToken={userToken}
+                onPay={onPay}
+                setOnPay={setOnPay}
+              />
+            }
+          />
+          <Route path="/buy" element={<BuyPage userToken={userToken} />} />
+          <Route path="/sold" element={<SoldPage userToken={userToken} />} />
         </Routes>
-        {visibleConnectModal && (
+        {visibleLoginModal && (
           <Modal
-            visibleConnectModal={visibleConnectModal}
-            setVisibleConnectModal={setVisibleConnectModal}
+            visibleLoginModal={visibleLoginModal}
+            setVisibleLoginModal={setVisibleLoginModal}
             setUserToken={setUserToken}
           />
         )}

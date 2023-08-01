@@ -37,9 +37,32 @@ header button {
   color: white;
 }
 
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.user-info :first-child > button {
+  border: transparent;
+  border-radius: 5px;
+  background-color: #00bb6a;
+  color: white;
+  width: 10rem;
+}
+
+.user-info :last-child > button {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: black;
+  width: 10rem;
+}
+
 .search-bloc {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   width: 64rem;
   height: 100%;

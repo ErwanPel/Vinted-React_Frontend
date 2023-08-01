@@ -1,0 +1,93 @@
+main.pay {
+  background-color: #ebedee;
+  height: 100vh;
+}
+
+.pay-form-bloc {
+  width: 60rem;
+  margin: 0 auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.pay-top-bloc {
+  padding-inline: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.pay-top-bloc > p {
+  margin-bottom: 4rem;
+  color: #999999;
+  font-size: 1.4rem;
+}
+
+.pay-top-bloc > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.item-top-bloc > div > div {
+  display: flex;
+  color: #666666;
+
+  justify-content: space-between;
+}
+
+.pay-middle-bloc {
+  margin-inline: 2rem;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 3rem;
+}
+
+.pay-middle-bloc > :first-child {
+  display: flex;
+  margin-block: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #111111;
+}
+
+.pay-middle-bloc > :last-child {
+  line-height: 2rem;
+}
+
+.card-bloc {
+  width: calc(100% - 4rem);
+  margin: 2rem auto;
+  border: 1px solid #ccc;
+  padding: 1.5rem;
+}
+
+.pay-form-bloc button {
+  height: 5rem;
+  background-color: #00bb6a;
+  color: white;
+  width: calc(100% - 4rem);
+  margin: 0 auto;
+  border-radius: 5px;
+  border: transparent;
+  margin-bottom: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+}
+
+.thanks-bloc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem;
+}
+
+.thanks-bloc button {
+  width: 10rem;
+  margin-block: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+}

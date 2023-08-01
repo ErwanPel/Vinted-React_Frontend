@@ -2,9 +2,9 @@ main.offer-bloc {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   gap: 4rem;
 }
+
 main.offer-bloc > div:first-of-type {
   align-self: center;
 }
@@ -22,17 +22,18 @@ main.offer-bloc > div > p {
   font-weight: bold;
 }
 
-.offers-card {
+.offers-cards {
   margin-top: 4rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.2rem;
+  gap: 1rem;
+  row-gap: 2rem;
 }
 
-main.offer-card {
+.card {
+  width: calc((100% - 1.5rem));
   display: flex;
   flex-direction: column;
-  gap: 3rem;
 }
 
 .offer-home {
@@ -85,7 +86,7 @@ select {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
-
+  margin-left: 1rem;
   min-height: 4rem;
 }
 
@@ -93,6 +94,18 @@ select {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.icon-user-empty {
+  border: 1px solid #ccc;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
 }
 
 select:hover {

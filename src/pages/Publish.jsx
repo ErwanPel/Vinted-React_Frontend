@@ -1,10 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import Dropzone from "react-dropzone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { uid } from "react-uid";
 
-import "../css/publish.css";
+import "../assets/css/publish.css";
 
 export default function Publish({ userToken }) {
   const [picture, setPicture] = useState([]);
@@ -18,21 +19,27 @@ export default function Publish({ userToken }) {
   const [city, setCity] = useState("");
   const [price, setPrice] = useState("");
   const [exchange, setExchange] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
   const handleFiles = (event) => {
+    setErrorMessage("");
     let filesList = [...picture];
     let previewList = [...previewPicture];
-    console.log(previewPicture);
-    for (let i = 0; i < event.length; i++) {
-      filesList.push(event[i]);
 
-      previewList.push(URL.createObjectURL(event[i]));
+    for (let i = 0; i < event.length; i++) {
+      console.log(filesList.length);
+      if (filesList.length === 6) {
+        setErrorMessage("Vous ne pouvez pas publier plus de 6 photos");
+        break;
+      } else {
+        filesList.push(event[i]);
+        previewList.push(URL.createObjectURL(event[i]));
+      }
     }
     setPicture(filesList);
     setPreviewPicture(previewList);
-    console.log(previewPicture);
   };
 
   const setData = async (formData) => {
@@ -43,6 +50,7 @@ export default function Publish({ userToken }) {
         {
           headers: {
             authorization: `Bearer ${userToken}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -50,27 +58,6 @@ export default function Publish({ userToken }) {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData();
-    console.log("la", picture);
-    for (let i = 0; i < picture.length; i++) {
-      formData.append("picture", picture[i]);
-    }
-    formData.append("picture", picture);
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("brand", brand);
-    formData.append("size", size);
-    formData.append("color", color);
-    formData.append("condition", condition);
-    formData.append("city", city);
-    formData.append("price", price);
-    formData.append("exchange", exchange);
-
-    setData(formData);
   };
 
   const deletePict = (event) => {
@@ -88,11 +75,32 @@ export default function Publish({ userToken }) {
     setPreviewPicture(newtab);
   };
 
-  return (
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    for (let i = 0; i < picture.length; i++) {
+      formData.append("picture", picture[i]);
+    }
+    formData.append("picture", picture);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("brand", brand);
+    formData.append("size", size);
+    formData.append("color", color);
+    formData.append("condition", condition);
+    formData.append("city", city);
+    formData.append("price", price);
+    formData.append("exchange", exchange);
+
+    setData(formData);
+  };
+
+  return userToken ? (
     <main className="publish">
       <form action="" className="publish-form wrapper " onSubmit={handleSubmit}>
         <p>Vends ton article</p>
-        <Dropzone onDrop={handleFiles}>
+        <Dropzone onDrop={handleFiles} maxFiles="6">
           {({ getRootProps, getInputProps }) => (
             <section className="section-drop">
               <div className="div-drop" {...getRootProps()}>
@@ -107,9 +115,8 @@ export default function Publish({ userToken }) {
               <div className="pict-view-bloc-publish">
                 {previewPicture &&
                   previewPicture.map((pict, index) => {
-                    console.log("map", pict);
                     return (
-                      <div className="pict-view-card" key={index + pict}>
+                      <div className="pict-view-card" key={uid(pict)}>
                         <img className="pict-view" src={pict} alt="" />
                         <button
                           type="button"
@@ -135,110 +142,149 @@ export default function Publish({ userToken }) {
                   Delete all picture
                 </button>
               )}
+              {errorMessage && <p className="error-message">{errorMessage}</p>}
             </section>
           )}
         </Dropzone>
         <div>
           <div>
-            <label htmlFor="title">Titre</label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              placeholder="ex: Chemise Celio verte"
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
-              required={true}
-            />
+            <div className="label-input-bloc">
+              <label htmlFor="title">Titre</label>
+            </div>
+            <div className="label-input-bloc">
+              <input
+                type="text"
+                name="title"
+                id="title"
+                placeholder="ex: Chemise Celio verte"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+                required={true}
+              />
+            </div>
           </div>
           <div>
-            <label htmlFor="description">Décris ton article</label>
-            <input
-              type="text"
-              name="description"
-              id="description"
-              placeholder="ex: porté quelquefois, taille correctement, ..."
-              value={description}
-              onChange={(event) => setDescription(event.target.value)}
-              required={true}
-            />
+            <div className="label-input-bloc">
+              <label htmlFor="description">Décris ton article</label>
+            </div>
+            <div className="label-input-bloc">
+              <textarea
+                type="text"
+                name="description"
+                id="description"
+                placeholder="ex: porté quelquefois, taille correctement, ..."
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                required={true}
+                rows={8}
+              />
+            </div>
           </div>
         </div>
         <div>
           <div>
-            <label htmlFor="marque">Marque</label>
-            <input
-              type="text"
-              name="marque"
-              id="marque"
-              placeholder="ex: Zara"
-              value={brand}
-              onChange={(event) => setBrand(event.target.value)}
-              required={true}
-            />
+            <div className="label-input-bloc">
+              {" "}
+              <label htmlFor="marque">Marque</label>
+            </div>
+            <div className="label-input-bloc">
+              {" "}
+              <input
+                type="text"
+                name="marque"
+                id="marque"
+                placeholder="ex: Zara"
+                value={brand}
+                onChange={(event) => setBrand(event.target.value)}
+                required={true}
+              />
+            </div>
           </div>
           <div>
-            <label htmlFor="taille">Taille</label>
-            <input
-              type="text"
-              name="taille"
-              id="taille"
-              placeholder="ex: L/ 40 / 12"
-              value={size}
-              onChange={(event) => setSize(event.target.value)}
-              required={true}
-            />
+            <div className="label-input-bloc">
+              <label htmlFor="taille">Taille</label>
+            </div>
+            <div className="label-input-bloc">
+              <input
+                type="text"
+                name="taille"
+                id="taille"
+                placeholder="ex: L/ 40 / 12"
+                value={size}
+                onChange={(event) => setSize(event.target.value)}
+                required={true}
+              />
+            </div>
           </div>
           <div>
-            <label htmlFor="couleur">Couleur</label>
-            <input
-              type="text"
-              name="couleur"
-              id="couleur"
-              placeholder="ex: Fushia"
-              value={color}
-              onChange={(event) => setColor(event.target.value)}
-              required={true}
-            />
+            <div className="label-input-bloc">
+              <label htmlFor="couleur">Couleur</label>
+            </div>
+            <div className="label-input-bloc">
+              {" "}
+              <input
+                type="text"
+                name="couleur"
+                id="couleur"
+                placeholder="ex: Fushia"
+                value={color}
+                onChange={(event) => setColor(event.target.value)}
+                required={true}
+              />
+            </div>
           </div>
           <div>
-            <label htmlFor="etat">Etat</label>
-            <input
-              type="text"
-              name="etat"
-              id="etat"
-              placeholder="ex: Neuf avec etiquette"
-              value={condition}
-              onChange={(event) => setCondition(event.target.value)}
-              required={true}
-            />
+            <div className="label-input-bloc">
+              {" "}
+              <label htmlFor="etat">Etat</label>
+            </div>
+            <div className="label-input-bloc">
+              {" "}
+              <input
+                type="text"
+                name="etat"
+                id="etat"
+                placeholder="ex: Neuf avec etiquette"
+                value={condition}
+                onChange={(event) => setCondition(event.target.value)}
+                required={true}
+              />
+            </div>
           </div>
           <div>
-            {" "}
-            <label htmlFor="lieu">Lieu</label>
-            <input
-              type="text"
-              name="lieu"
-              id="lieu"
-              placeholder="ex: Paris"
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
-              required={true}
-            />
+            <div className="label-input-bloc">
+              {" "}
+              <label htmlFor="lieu">Lieu</label>
+            </div>
+            <div className="label-input-bloc">
+              <input
+                type="text"
+                name="lieu"
+                id="lieu"
+                placeholder="ex: Paris"
+                value={city}
+                onChange={(event) => setCity(event.target.value)}
+                required={true}
+              />
+            </div>
           </div>
         </div>
         <div>
           <div className="price-field">
-            <label htmlFor="price">Prix</label>
-            <input
-              type="text"
-              name="price"
-              id="price"
-              placeholder="ex: 0,00 €"
-              value={price}
-              onChange={(event) => setPrice(event.target.value)}
-              required={true}
-            />
+            <div className="label-input-bloc">
+              <label htmlFor="price">Prix</label>
+            </div>
+            <div className="label-input-bloc">
+              <input
+                type="number"
+                name="price"
+                id="price"
+                placeholder="ex: 0,00 €"
+                value={price}
+                onChange={(event) => setPrice(event.target.value)}
+                required={true}
+              />
+            </div>
           </div>
           <div className="exchange-field">
             <label htmlFor="exchange">
@@ -253,9 +299,10 @@ export default function Publish({ userToken }) {
             </label>
           </div>
         </div>
-
         <button className="sell-button">Ajouter</button>
       </form>
     </main>
+  ) : (
+    <Navigate to="/user/login" state={{ from: "/offer/publish" }} />
   );
 }

@@ -8,19 +8,19 @@ import UncheckedIcon from "./UncheckedIcon";
 import { useNavigate } from "react-router-dom";
 
 import "react-toggle/style.css";
-import "../css/header.css";
+import "../assets/css/header.css";
 
 export default function Header({
   userToken,
   setUserToken,
-  visibleConnectModal,
-  setVisibleConnectModal,
+  visibleLoginModal,
+  setVisibleLoginModal,
   visibleSignModal,
   setVisibleSignModal,
   query,
   setQuery,
-  sellPage,
-  setSellPage,
+  onPay,
+  setOnPay,
 }) {
   const navigate = useNavigate();
 
@@ -34,8 +34,8 @@ export default function Header({
     setVisibleSignModal(() => !visibleSignModal);
   };
 
-  const getConnectModal = () => {
-    setVisibleConnectModal(() => !visibleConnectModal);
+  const getLoginModal = () => {
+    setVisibleLoginModal(() => !visibleLoginModal);
   };
 
   const handleTitle = (event) => {
@@ -56,11 +56,19 @@ export default function Header({
     }
   };
 
+  // This function play the sort and range search of the header
+  const playSearch = () => {
+    let newQuery = { ...query };
+    newQuery["page"] = 1;
+    setQuery(newQuery);
+    setOnPay(false);
+  };
+
   return (
     <header className="wrapper">
       <div>
         <Link to="/">
-          <img src={logo} alt="logo avec écrit vinted" />
+          <img src={logo} alt="logo avec écrit vinted" onClick={playSearch} />
         </Link>
       </div>
       <div className="search-bloc">
@@ -73,59 +81,66 @@ export default function Header({
             onChange={handleTitle}
           />
         </div>
-        <div className="price-search-bloc">
-          <div className="checkbox-sort">
-            <div>
-              <label htmlFor="sort">Trier par prix : </label>
-            </div>
+        {!onPay && (
+          <div className="price-search-bloc">
+            <div className="checkbox-sort">
+              <div>
+                <label htmlFor="sort">Trier par prix : </label>
+              </div>
 
-            <Toggle
-              type="checkbox"
-              name="sort"
-              id="sort"
-              onChange={handleSort}
-              className="toggle"
-              icons={{
-                checked: <CheckedIcon className="check" />,
-                unchecked: <UncheckedIcon />,
-              }}
-            />
-          </div>
-          <div className="range-bloc">
-            <div>
-              {" "}
-              <label htmlFor="priceRange">Prix entre : </label>
+              <Toggle
+                type="checkbox"
+                name="sort"
+                id="sort"
+                onChange={handleSort}
+                className="toggle"
+                icons={{
+                  checked: <CheckedIcon className="check" />,
+                  unchecked: <UncheckedIcon />,
+                }}
+              />
             </div>
+            <div className="range-bloc">
+              <div>
+                {" "}
+                <label htmlFor="priceRange">Prix entre : </label>
+              </div>
 
-            <SlideRange
-              className="range-bar"
-              id="priceRange"
-              query={query}
-              setQuery={setQuery}
-            />
+              <SlideRange
+                className="range-bar"
+                id="priceRange"
+                query={query}
+                setQuery={setQuery}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {!userToken ? (
         <div className="user-log-create">
           <button onClick={getSignModal}>S'inscrire</button>
-          <button onClick={getConnectModal}>Se connecter</button>
+          <button onClick={getLoginModal}>Se connecter</button>
         </div>
       ) : (
-        <div>
-          <button className="disconnect-button" onClick={removeCookies}>
-            Se deconnecter
-          </button>
-        </div>
+        <>
+          <div>
+            <button className="disconnect-button" onClick={removeCookies}>
+              Se deconnecter
+            </button>
+          </div>
+          <div className="user-info">
+            <Link to="/buy">
+              <button>Mes achats</button>
+            </Link>
+            <Link to="/sold">
+              <button>Mes ventes</button>
+            </Link>
+          </div>
+        </>
       )}
-      <Link to={userToken ? "/offer/publish" : "/user/signup"}>
-        <button
-          className="sell-button"
-          onClick={!userToken && setSellPage(true)}
-        >
-          Vends tes articles
-        </button>
+      <Link to="/offer/publish">
+        <button className="sell-button">Vends tes articles</button>
       </Link>
     </header>
   );

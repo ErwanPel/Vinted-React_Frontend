@@ -1,6 +1,6 @@
 .hero-bloc {
   height: 47rem;
-  background-image: url("../assets/img/hero.jpg");
+  background-image: url("../img/hero.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 40%;
@@ -14,7 +14,7 @@
   line-height: 4rem;
 }
 
-.hero-bloc > div {
+.hero-bloc .window {
   height: 27rem;
   width: 40rem;
   background-color: white;
