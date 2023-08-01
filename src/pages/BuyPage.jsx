@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { uid } from "react-uid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import intl from "../assets/tools/intl";
 
 import "../assets/css/buy-sold.css";
 
@@ -41,11 +42,6 @@ export default function BuyPage({ userToken }) {
     console.log("useEffect buy");
     fetchData();
   }, []);
-
-  const intl = new Intl.NumberFormat("fr-FR", {
-    style: "currency",
-    currency: "EUR",
-  });
 
   return (
     <main className="user-bloc">

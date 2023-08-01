@@ -1,15 +1,10 @@
 import { Range, getTrackBackground } from "react-range";
+import intl from "../assets/tools/intl";
 
 export default function SlideRange({ query, setQuery }) {
   const STEP = 0.1;
   const MIN = 0;
   const MAX = 500;
-
-  const intl = new Intl.NumberFormat("fr-FR", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  });
 
   const handlePrice = (values) => {
     console.log(values[1]);

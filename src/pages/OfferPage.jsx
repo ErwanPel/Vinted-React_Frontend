@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import { uid } from "react-uid";
+import intl from "../assets/tools/intl";
 
 import "react-multi-carousel/lib/styles.css";
 import "../assets/css/offerPage.css";
@@ -54,11 +55,6 @@ export default function OfferPage({ setOnPay, userToken }) {
   if (data?.bought === true) {
     setTimeout(() => navigate("/"), 2000);
   }
-
-  const intl = new Intl.NumberFormat("fr-FR", {
-    style: "currency",
-    currency: "EUR",
-  });
 
   return (
     <>
