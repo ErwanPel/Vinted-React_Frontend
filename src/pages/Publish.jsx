@@ -7,7 +7,7 @@ import { uid } from "react-uid";
 
 import "../assets/css/publish.css";
 
-export default function Publish({ userToken }) {
+export default function Publish({ userToken, query, setQuery, setOnPay }) {
   const [picture, setPicture] = useState([]);
   const [previewPicture, setPreviewPicture] = useState([]);
   const [title, setTitle] = useState("");
@@ -95,6 +95,13 @@ export default function Publish({ userToken }) {
     formData.append("exchange", exchange);
 
     setData(formData);
+  };
+
+  const playSearch = () => {
+    let newQuery = { ...query };
+    newQuery["page"] = 1;
+    setQuery(newQuery);
+    setOnPay(false);
   };
 
   return userToken ? (
@@ -300,7 +307,9 @@ export default function Publish({ userToken }) {
             </label>
           </div>
         </div>
-        <button className="sell-button">Ajouter</button>
+        <button className="sell-button" onClick={playSearch}>
+          Ajouter
+        </button>
       </form>
     </main>
   ) : (

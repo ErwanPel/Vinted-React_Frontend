@@ -80,7 +80,14 @@ function App() {
           />
           <Route
             path="/offer/publish"
-            element={<Publish userToken={userToken} />}
+            element={
+              <Publish
+                userToken={userToken}
+                setOnPay={setOnPay}
+                query={query}
+                setQuery={setQuery}
+              />
+            }
           />
           <Route
             path="/payment"
