@@ -1,4 +1,4 @@
-import ConnexionPage from "../pages/LoginPage";
+import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 
 import "../assets/css/signup-login.css";
@@ -38,7 +38,7 @@ export default function Modal({
           </button>
         )}
         {visibleLoginModal && (
-          <ConnexionPage
+          <LoginPage
             visibleLoginModal={visibleLoginModal}
             setVisibleLoginModal={setVisibleLoginModal}
             setUserToken={setUserToken}
