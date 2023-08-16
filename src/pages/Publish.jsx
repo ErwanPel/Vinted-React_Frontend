@@ -23,6 +23,8 @@ export default function Publish({ userToken, query, setQuery, setOnPay }) {
 
   const navigate = useNavigate();
 
+  console.log("picture", picture, picture.length);
+
   const handleFiles = (event) => {
     setErrorMessage("");
     let filesList = [...picture];
@@ -78,23 +80,28 @@ export default function Publish({ userToken, query, setQuery, setOnPay }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData();
 
-    for (let i = 0; i < picture.length; i++) {
-      formData.append("picture", picture[i]);
+    if (picture.length > 0) {
+      const formData = new FormData();
+
+      for (let i = 0; i < picture.length; i++) {
+        formData.append("picture", picture[i]);
+      }
+      formData.append("picture", picture);
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("brand", brand);
+      formData.append("size", size);
+      formData.append("color", color);
+      formData.append("condition", condition);
+      formData.append("city", city);
+      formData.append("price", price);
+      formData.append("exchange", exchange);
+
+      setData(formData);
+    } else {
+      setErrorMessage("Il faut au moins 1 photo pour publier une offre");
     }
-    formData.append("picture", picture);
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("brand", brand);
-    formData.append("size", size);
-    formData.append("color", color);
-    formData.append("condition", condition);
-    formData.append("city", city);
-    formData.append("price", price);
-    formData.append("exchange", exchange);
-
-    setData(formData);
   };
 
   const playSearch = () => {

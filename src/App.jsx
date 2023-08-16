@@ -21,21 +21,37 @@ import {
   faArrowDown,
   faPlus,
   faUser,
+  faChevronRight,
+  faChevronLeft,
+  faAnglesRight,
+  faAnglesLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faArrowDown, faArrowUp, faPlus, faUser);
+library.add(
+  faArrowDown,
+  faArrowUp,
+  faPlus,
+  faUser,
+  faChevronRight,
+  faChevronLeft,
+  faAnglesRight,
+  faAnglesLeft
+);
 function App() {
   const [query, setQuery] = useState({
     page: 1,
     sort: 1,
     values: [0, 100],
-    limit: 20,
+    limit: 10,
   });
   const [userToken, setUserToken] = useState(Cookies.get("token") || "");
+
   const [visibleLoginModal, setVisibleLoginModal] = useState(false);
   const [visibleSignModal, setVisibleSignModal] = useState(false);
   const [sellPage, setSellPage] = useState(false);
   const [onPay, setOnPay] = useState(false);
+
+  console.log("username", userName);
 
   return (
     <div className="app">

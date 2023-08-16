@@ -1,14 +1,14 @@
 import logo from "../assets/img/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import SlideRange from "./SlideRange";
 import Toggle from "react-toggle";
 import CheckedIcon from "./CheckedIcon";
 import UncheckedIcon from "./UncheckedIcon";
-import { useNavigate } from "react-router-dom";
 
 import "react-toggle/style.css";
 import "../assets/css/header.css";
+import { useState } from "react";
 
 export default function Header({
   userToken,
@@ -22,6 +22,7 @@ export default function Header({
   onPay,
   setOnPay,
 }) {
+  const [userMenu, setUserMenu] = useState(false);
   const navigate = useNavigate();
 
   const removeCookies = () => {
@@ -130,12 +131,29 @@ export default function Header({
             </button>
           </div>
           <div className="user-info">
-            <Link to="/buy">
-              <button>Mes achats</button>
+            <button
+              onClick={(event) => {
+                setUserMenu(!userMenu);
+              }}
+            >
+              User
+            </button>
+            {userMenu && (
+              <div className="user-menu">
+                <Link to="/buy" onClick={() => setUserMenu(false)}>
+                  <div>Mes achats</div>
+                </Link>
+                <Link to="/sold" onClick={() => setUserMenu(false)}>
+                  <div>Mes ventes</div>
+                </Link>
+              </div>
+            )}
+            {/* 
+              <button></button>
             </Link>
-            <Link to="/sold">
-              <button>Mes ventes</button>
-            </Link>
+            
+              <button></button>
+            </Link> */}
           </div>
         </>
       )}

@@ -11,8 +11,8 @@ export default function SlideRange({ query, setQuery }) {
     let newQuery = { ...query };
     newQuery.values[0] = Math.round(values[0]);
     newQuery.values[1] = Math.round(values[1]);
+    newQuery["page"] = 1;
     setQuery(newQuery);
-    // console.log(newQuery.values);
   };
 
   return (

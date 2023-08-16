@@ -37,15 +37,15 @@ main.publish {
   border-bottom: 1px solid #ccc;
 }
 
-.publish-formlabel:not(label[for="exchange"]) {
+.publish-form label:not(label[for="exchange"]) {
   width: 50%;
-  font-size: 1.4rem;
 }
 
 label[for="exchange"] {
   display: flex;
   align-items: center;
   gap: 1rem;
+  font-size: 1.4rem;
 }
 
 .label-input-bloc {
@@ -59,6 +59,7 @@ textarea {
   outline: none;
   border: none;
   border-bottom: 1px solid #ccc;
+  font-size: 1.6rem;
 }
 
 input[name="description"] {
@@ -124,12 +125,15 @@ input[name="description"] {
   height: 2rem;
   width: 10rem;
   top: initial;
-  bottom: 5px;
+  bottom: 10px;
+  right: calc(50% - 5rem);
+  font-size: 1.2rem;
 }
 
 .pict-view-card {
   position: relative;
   height: 9rem;
+  margin-bottom: 2rem;
 }
 
 button.delete-picture {
@@ -139,4 +143,8 @@ button.delete-picture {
   right: 0;
   background-color: #2cb1ba;
   color: white;
+}
+
+.publish .error-message {
+  margin-bottom: 2.5rem;
 }

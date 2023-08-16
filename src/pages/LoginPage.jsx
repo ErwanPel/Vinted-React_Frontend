@@ -36,7 +36,7 @@ export default function LoginPage({
         "https://site--backend-vinted--fwddjdqr85yq.code.run/user/login",
         data
       );
-      console.log(response.data);
+
       Cookies.set("token", response.data.token);
       setUserToken(() => response.data.token);
       setEmail(() => "");
@@ -56,7 +56,8 @@ export default function LoginPage({
 
       if (visibleLoginModal) setVisibleLoginModal(() => false);
     } catch (error) {
-      setErrorMessage(error.response.data.message);
+      console.log(error.response);
+      setErrorMessage(error.response?.data?.message);
     }
   };
 

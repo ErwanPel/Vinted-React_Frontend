@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import intl from "../assets/tools/intl";
 
 export default function OfferCard({ data, setOnPay }) {
+  console.log("offerCard", data);
+
   return (
     <div className="offers-cards">
       {data.offers.map((element) => {

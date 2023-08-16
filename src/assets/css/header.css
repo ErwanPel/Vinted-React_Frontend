@@ -38,17 +38,28 @@ header button {
 }
 
 .user-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  position: relative;
 }
 
-.user-info :first-child > button {
+.user-menu {
+  position: absolute;
+
+  width: 100%;
+}
+
+.user-menu div {
+  text-align: center;
+  font-size: 1.2rem;
+  padding-block: 1rem;
+  background-color: rgba(255, 255, 255, 0.911);
+  border: 1px solid black;
+}
+
+/* .user-info :first-child > button {
   border: transparent;
   border-radius: 5px;
   background-color: #00bb6a;
-  color: white;
-  width: 10rem;
+  
 }
 
 .user-info :last-child > button {
@@ -57,7 +68,7 @@ header button {
   background-color: #ffffff;
   color: black;
   width: 10rem;
-}
+} */
 
 .search-bloc {
   display: flex;
