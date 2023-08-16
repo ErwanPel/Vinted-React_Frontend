@@ -51,8 +51,6 @@ function App() {
   const [sellPage, setSellPage] = useState(false);
   const [onPay, setOnPay] = useState(false);
 
-  console.log("username", userName);
-
   return (
     <div className="app">
       <Router>
