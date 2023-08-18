@@ -38,6 +38,9 @@ export default function LoginPage({
       );
 
       Cookies.set("token", response.data.token);
+      Cookies.set("name", response.data.account.username);
+      console.log("log", response.data.account.avatar);
+      Cookies.set("avatar", response.data.account.avatar);
       setUserToken(() => response.data.token);
       setEmail(() => "");
       setPassword(() => "");

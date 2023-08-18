@@ -2,7 +2,7 @@ main.offer-bloc {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 8rem;
+  gap: 4rem;
 }
 
 main.offer-bloc > div:first-of-type {

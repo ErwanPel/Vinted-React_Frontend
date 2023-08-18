@@ -5,6 +5,7 @@ import SlideRange from "./SlideRange";
 import Toggle from "react-toggle";
 import CheckedIcon from "./CheckedIcon";
 import UncheckedIcon from "./UncheckedIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "react-toggle/style.css";
 import "../assets/css/header.css";
@@ -27,6 +28,8 @@ export default function Header({
 
   const removeCookies = () => {
     Cookies.remove("token");
+    Cookies.remove("name");
+    Cookies.remove("avatar");
     setUserToken("");
     navigate("/");
   };
@@ -130,30 +133,38 @@ export default function Header({
               Se deconnecter
             </button>
           </div>
-          <div className="user-info">
-            <button
+          <div className="user-info" onMouseLeave={() => setUserMenu(false)}>
+            <p>{`Hey ${Cookies.get("name")} :)`}</p>
+            <div
+              onMouseEnter={() => setUserMenu(true)}
               onClick={(event) => {
                 setUserMenu(!userMenu);
               }}
             >
-              User
-            </button>
+              {Cookies.get("avatar") !== "none" ? (
+                <img
+                  src={Cookies.get("avatar")}
+                  alt={`photo de profil de ${Cookies.get("name")}`}
+                />
+              ) : (
+                <FontAwesomeIcon icon="user" />
+              )}
+            </div>
             {userMenu && (
-              <div className="user-menu">
-                <Link to="/buy" onClick={() => setUserMenu(false)}>
-                  <div>Mes achats</div>
-                </Link>
-                <Link to="/sold" onClick={() => setUserMenu(false)}>
-                  <div>Mes ventes</div>
-                </Link>
-              </div>
+              <>
+                <div
+                  className="user-menu"
+                  onMouseLeave={() => setUserMenu(false)}
+                >
+                  <Link to="/buy" onClick={() => setUserMenu(false)}>
+                    <div>Mes achats</div>
+                  </Link>
+                  <Link to="/sold" onClick={() => setUserMenu(false)}>
+                    <div>Mes ventes</div>
+                  </Link>
+                </div>
+              </>
             )}
-            {/* 
-              <button></button>
-            </Link>
-            
-              <button></button>
-            </Link> */}
           </div>
         </>
       )}

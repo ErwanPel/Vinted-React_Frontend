@@ -39,12 +39,55 @@ header button {
 
 .user-info {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.user-info > div:first-child {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 1px solid #09b1ba;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info p {
+  position: absolute;
+  top: 1.5rem;
+  width: 20rem;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #09b1ba;
+  font-weight: bold;
 }
 
 .user-menu {
   position: absolute;
+  top: 8.8rem;
+  width: 12rem;
+}
 
-  width: 100%;
+.user-menu::before {
+  position: absolute;
+  bottom: 100%;
+  left: calc(50% - 0.8rem);
+  content: " ";
+  border-width: 0.8rem;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom-color: #09b1ba;
 }
 
 .user-menu div {
@@ -52,7 +95,8 @@ header button {
   font-size: 1.2rem;
   padding-block: 1rem;
   background-color: rgba(255, 255, 255, 0.911);
-  border: 1px solid black;
+  border: 1px solid #09b1ba;
+  color: #09b1ba;
 }
 
 /* .user-info :first-child > button {

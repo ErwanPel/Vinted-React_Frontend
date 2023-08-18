@@ -64,6 +64,8 @@ export default function SignUpPage({
       );
 
       Cookies.set("token", response.data.token, { expires: 1 });
+      Cookies.set("name", response.data.account.username);
+      Cookies.set("avatar", response.data.account.avatar);
       setUserToken(() => response.data.token);
       if (visibleSignModal) setVisibleSignModal(() => false);
       setName(() => "");
