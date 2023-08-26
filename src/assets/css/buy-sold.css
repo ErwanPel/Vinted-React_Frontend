@@ -12,11 +12,14 @@ div.user-bloc {
   margin-top: 5rem;
 }
 
+.first-info {
+  display: flex;
+}
+
 div.user-bloc > p {
   font-weight: bold;
   font-size: 2rem;
   margin-block: 3rem;
-  height: 100vh;
 }
 
 .user-page {
@@ -30,6 +33,18 @@ div.user-bloc > p {
 }
 
 .user-page > div:first-of-type {
+  display: flex;
+  gap: 6rem;
+}
+
+.data-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+
+.data-product > div:first-of-type {
   width: 20rem;
   display: flex;
   flex-direction: column;
@@ -37,18 +52,18 @@ div.user-bloc > p {
   gap: 1.5rem;
 }
 
-.user-page > div:first-of-type > span {
+.data-product > div:first-of-type > span {
   font-weight: bold;
 }
 
-.user-page > div:first-of-type > div {
+.data-product > div:first-of-type > div {
   width: 80%;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.user-page > div:nth-of-type(2) {
+.data-product > div:last-of-type {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -74,4 +89,42 @@ div.user-bloc > p {
   width: 4rem;
   height: 4rem;
   object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .user-page > div:first-of-type {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .data-product > div:first-of-type > div {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .user-page {
+    flex-direction: column;
+    gap: 4rem;
+  }
+  .user-page > div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    width: 16rem;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    width: 90%;
+    border-top: 1px solid black;
+  }
+  .user-page > div:first-of-type {
+    justify-content: center;
+    border-bottom: 1px solid black;
+    padding-bottom: 2rem;
+    width: 90%;
+  }
+  .data-product {
+    width: 100%;
+  }
 }

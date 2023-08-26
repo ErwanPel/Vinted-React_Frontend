@@ -1,6 +1,7 @@
 main.publish {
   background-color: #ebedee;
   padding-top: 4rem;
+  padding-inline: 2rem;
 }
 
 .publish-form > p {
@@ -31,6 +32,7 @@ main.publish {
 .exchange-field {
   width: 52%;
   align-self: flex-end;
+  padding-bottom: 1rem;
 }
 
 .publish-form > div > div:not(.price-field, :last-of-type) {
@@ -39,6 +41,9 @@ main.publish {
 
 .publish-form label:not(label[for="exchange"]) {
   width: 50%;
+  font-weight: bold;
+  padding: 2rem;
+  font-size: 1.4rem;
 }
 
 label[for="exchange"] {

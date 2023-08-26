@@ -21,7 +21,7 @@ export default function SlideRange({ query, setQuery }) {
         display: "flex",
         justifyContent: "center",
         flexWrap: "wrap",
-        width: "35rem",
+        width: "100%",
 
         height: "5rem",
       }}

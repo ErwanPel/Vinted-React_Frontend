@@ -28,7 +28,11 @@ export default function OfferCard({ data, setOnPay }) {
                 <span>{element.owner.account.username}</span>
               </div>
               <div>
-                <img src={element.product_image[0].secure_url} alt="product" />
+                <img
+                  className="card-picture"
+                  src={element.product_image[0].secure_url}
+                  alt="product"
+                />
               </div>
               <div>
                 <span className="price">

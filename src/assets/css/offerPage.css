@@ -3,6 +3,7 @@
 
   justify-content: space-around;
   background-color: #ebedee;
+  padding-inline: 2rem;
 }
 
 .bloc-img-offer {
@@ -107,4 +108,52 @@
   padding: 2rem;
   border-radius: 5px;
   background-color: lightcoral;
+}
+
+@media (max-width: 1150px) {
+  .bloc-img-offer {
+    height: 40rem;
+    width: 40rem;
+  }
+  .carousel-container {
+    width: 40rem;
+    height: 40rem;
+  }
+
+  .offer-text > :first-child {
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 3.5rem;
+    gap: 1.5rem;
+  }
+  .offer-text > :last-child {
+    height: calc(100% - 20rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .offer-text {
+    width: 35rem;
+    height: 50rem;
+    background-color: white;
+  }
+  .offer-title {
+    margin-top: 0rem;
+  }
+  .offer-text button {
+    width: 26rem;
+    height: 3.5rem;
+    font-size: 1.6rem;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+@media (max-width: 750px) {
+  .offer-single {
+    flex-direction: column;
+    align-items: center;
+    gap: 6rem;
+  }
 }

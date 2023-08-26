@@ -47,7 +47,7 @@ export default function OfferPage({ setOnPay, userToken }) {
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 1,
       slidesToSlide: 1, // optional, default to 1.
     },
     mobile: {

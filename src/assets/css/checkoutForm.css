@@ -1,6 +1,6 @@
 main.pay {
   background-color: #ebedee;
-  height: 100vh;
+  height: 100%;
 }
 
 .pay-form-bloc {
@@ -90,4 +90,9 @@ main.pay {
   margin-block: auto;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
+}
+
+@media (max-width: 710px) {
+  .pay-form-bloc {
+    width: 40rem
 }

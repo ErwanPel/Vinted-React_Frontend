@@ -2,7 +2,9 @@ main.offer-bloc {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 4rem;
+  width: 100%;
 }
 
 main.offer-bloc > div:first-of-type {
@@ -12,7 +14,7 @@ main.offer-bloc > div:first-of-type {
 main.offer-bloc > div > p,
 label {
   margin: 0 auto;
-  padding: 2rem;
+
   font-weight: bold;
 }
 
@@ -25,6 +27,7 @@ main.offer-bloc > div > p {
 .offers-cards {
   margin-top: 4rem;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   row-gap: 2rem;
@@ -48,7 +51,7 @@ main.offer-bloc > div > p {
 .offer-home img {
   object-fit: cover;
   width: 100%;
-  height: 36rem;
+  height: 26rem;
 }
 
 .offer-home div:last-of-type {
@@ -75,6 +78,7 @@ main.offer-bloc > div > p {
   display: flex;
   align-items: center;
   gap: 5rem;
+  border: 1px solid orange;
 }
 
 select {
@@ -130,4 +134,39 @@ select {
 
 select:hover {
   cursor: pointer;
+}
+
+@media (max-width: 650px) {
+  .offers-cards {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .offer-home {
+    margin-bottom: 0;
+  }
+  .offer-home img.card-picture {
+    object-fit: cover;
+    width: 90%;
+    height: 26rem;
+  }
+  .select-bloc {
+    gap: 2rem;
+  }
+
+  select {
+    width: 10rem;
+    height: 4rem;
+  }
+
+  .chevron {
+    font-size: 2rem;
+
+    padding: 0.5rem;
+  }
+  .select-bloc > .unvisible {
+    visibility: hidden;
+    margin-inline: 0.9rem;
+  }
 }

@@ -60,30 +60,35 @@ export default function BuyPage({ userToken }) {
 
                 return (
                   <div className="user-page" key={uid(item)}>
-                    <span>{item.date}</span>
-                    <span>statut : Achat</span>
                     <div>
-                      <span>{item.product.product_name}</span>
+                      <span>{item.date}</span>
+                      <span>statut : Achat</span>
+                    </div>
+                    <div className="data-product">
                       <div>
-                        <span>{intl.format(item.product.product_price)}</span>
-                        <img
-                          src={item.product.product_image[0].secure_url}
-                          alt="image de l'achat"
-                        />
+                        <span>{item.product.product_name}</span>
+                        <div>
+                          <span>{intl.format(item.product.product_price)}</span>
+                          <img
+                            src={item.product.product_image[0].secure_url}
+                            alt="image de l'achat"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        {item.product.product_details.map((detail) => {
+                          console.log(detail);
+
+                          return (
+                            <div key={uid(detail)}>
+                              <span>{Object.keys(detail)}</span> :{" "}
+                              <span>{Object.values(detail)} </span>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
-                    <div>
-                      {item.product.product_details.map((detail) => {
-                        console.log(detail);
 
-                        return (
-                          <div key={uid(detail)}>
-                            <span>{Object.keys(detail)}</span> :{" "}
-                            <span>{Object.values(detail)} </span>
-                          </div>
-                        );
-                      })}
-                    </div>
                     <div>
                       <p>vendu par : </p>
                       <div>

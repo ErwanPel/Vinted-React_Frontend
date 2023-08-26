@@ -14,6 +14,7 @@
   border-bottom: 1px solid rgb(248, 115, 115);
   font-size: 1.6rem;
   outline: none;
+  margin-bottom: 2rem;
 }
 
 .newsletter-item {
@@ -48,6 +49,7 @@
   font-size: 1.6rem;
   color: white;
   outline: none;
+  margin-top: 2rem;
 }
 
 .form-bloc p:not(.error-message) {

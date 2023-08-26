@@ -14,6 +14,10 @@
   line-height: 4rem;
 }
 
+.hero-bloc > div {
+  width: 1250px;
+}
+
 .hero-bloc .window {
   height: 27rem;
   width: 40rem;
@@ -31,4 +35,46 @@
   height: 4.5rem;
   align-self: flex-start;
   font-size: 1.6rem;
+}
+
+@media (max-width: 925px) {
+  .hero-bloc {
+    height: 30rem;
+  }
+
+  .hero-bloc .window {
+    height: 20rem;
+    width: 30rem;
+    gap: 2rem;
+    padding: 1rem;
+  }
+  .hero-bloc p {
+    font-size: 2.8rem;
+    line-height: 3rem;
+  }
+  .hero-bloc button {
+    width: 16rem;
+    height: 3.5rem;
+    align-self: flex-start;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-bloc .window {
+    height: 20rem;
+    width: 20rem;
+    gap: 2rem;
+    padding: 1rem;
+  }
+  .hero-bloc p {
+    font-size: 2.2rem;
+    line-height: 3rem;
+  }
+  .hero-bloc button {
+    width: 14rem;
+    height: 3.5rem;
+    align-self: center;
+    font-size: 1.4rem;
+  }
 }
