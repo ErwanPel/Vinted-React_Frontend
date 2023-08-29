@@ -22,18 +22,19 @@
   align-items: center;
   gap: 4rem;
   width: fit-content;
-  align-self: flex-start;
+  margin-top: 1.5rem;
 }
 
 .newsletter-item input {
   transform: scale(2);
   outline: none;
-  margin-right: 2rem;
+  margin-inline: 2rem;
 }
 
 .newsletter-item label {
   font-size: 1.6rem;
   color: #666666;
+  width: 30rem;
 }
 .form-bloc p:not(.error-message, .p-drop) {
   font-size: 1.2rem;

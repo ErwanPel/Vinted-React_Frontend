@@ -37,7 +37,8 @@ button:hover {
 
 h2 {
   font-size: 2.4rem;
-  margin-block: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 
 .modal-bloc {
@@ -58,7 +59,6 @@ h2 {
   height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 main {

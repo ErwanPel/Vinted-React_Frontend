@@ -30,6 +30,7 @@ export default function Header({
     Cookies.remove("token");
     Cookies.remove("avatar");
     setOnPay(false);
+    setUserMenu(false);
     setUserToken("");
     navigate("/");
   };

@@ -4,13 +4,20 @@ import axios from "axios";
 import Carousel from "react-multi-carousel";
 import { uid } from "react-uid";
 import intl from "../assets/tools/intl";
+import Cookies from "js-cookie";
 
 import "react-multi-carousel/lib/styles.css";
 import "../assets/css/offerPage.css";
 
-export default function OfferPage({ setOnPay, userToken }) {
+export default function OfferPage({
+  setOnPay,
+  userToken,
+  visibleModify,
+  setVisibleModify,
+}) {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -34,10 +41,47 @@ export default function OfferPage({ setOnPay, userToken }) {
     }
   };
 
+  const deleteData = async (data) => {
+    try {
+      const response = await axios.delete(
+        `https://site--backend-vinted--fwddjdqr85yq.code.run/offer/delete?id=${data}`,
+        {
+          headers: {
+            authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      console.log(response.data);
+      alert("l'offre a bien été supprimé");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     console.log("useEffect Offer");
     fetchData();
+    console.log("useEffect", visibleModify);
   }, []);
+
+  const getModifyOffer = () => {
+    const cookiesToModify = {
+      title: data.product_name,
+      description: data.product_description,
+      price: data.product_price,
+      id: data._id,
+    };
+
+    for (let i = 0; i < data.product_details.length; i++) {
+      cookiesToModify[Object.keys(data.product_details[i])[0].toLowerCase()] =
+        Object.values(data.product_details[i])[0];
+    }
+
+    Cookies.set("modifyItem", JSON.stringify(cookiesToModify));
+
+    setVisibleModify(!visibleModify);
+  };
 
   const responsive = {
     desktop: {
@@ -79,7 +123,7 @@ export default function OfferPage({ setOnPay, userToken }) {
               customTransition="all .5"
               transitionDuration={2000}
               containerClass="carousel-container"
-              removeArrowOnDeviceType={["tablet", "mobile"]}
+              removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
               dotListClass="custom-dot-list-style"
             >
               {data.product_image.map((picture, index) => {
@@ -123,6 +167,21 @@ export default function OfferPage({ setOnPay, userToken }) {
               {console.log(data.owner._id)}
               {data.bought ? (
                 <p className="sold-warn">Déjà vendu !</p>
+              ) : data.owner_connect ? (
+                <>
+                  <button
+                    className="blue_button_modify"
+                    onClick={() => getModifyOffer()}
+                  >
+                    Modifier mon offre
+                  </button>
+                  <button
+                    className="red_button_delete"
+                    onClick={() => deleteData(data._id)}
+                  >
+                    Supprimer mon offre
+                  </button>
+                </>
               ) : (
                 <Link
                   to="/payment"

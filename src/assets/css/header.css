@@ -57,7 +57,6 @@ header button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
   padding-inline: 0.5rem;
   padding-bottom: 0.5rem;
 }
@@ -81,7 +80,7 @@ header button {
 
 .user-menu {
   position: absolute;
-  top: 8.5rem;
+  top: 4.7rem;
   width: 12rem;
 }
 
@@ -124,9 +123,9 @@ header button {
 .search-bloc {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1rem;
   width: 64rem;
-  height: 12rem;
 }
 
 .price-search-bloc {
@@ -223,9 +222,9 @@ header button {
   .search-bloc {
     width: 70%;
   }
-  header {
+  /* header {
     height: 15rem;
-  }
+  } */
 }
 
 @media (max-width: 1060px) {
@@ -235,15 +234,12 @@ header button {
   .header-button {
     flex-direction: column-reverse;
     align-items: center;
+
     gap: 1rem;
   }
+
   .user-menu {
-    position: absolute;
     top: 4.8rem;
-    width: 12rem;
-  }
-  .user-menu {
-    top: 6.6rem;
   }
 }
 

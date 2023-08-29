@@ -50,6 +50,7 @@ function App() {
   const [visibleSignModal, setVisibleSignModal] = useState(false);
   const [sellPage, setSellPage] = useState(false);
   const [onPay, setOnPay] = useState(false);
+  const [visibleModify, setVisibleModify] = useState(false);
 
   return (
     <div className="app">
@@ -82,7 +83,14 @@ function App() {
           />
           <Route
             path="/offer/:id"
-            element={<OfferPage setOnPay={setOnPay} userToken={userToken} />}
+            element={
+              <OfferPage
+                setOnPay={setOnPay}
+                userToken={userToken}
+                visibleModify={visibleModify}
+                setVisibleModify={setVisibleModify}
+              />
+            }
           />
           <Route
             path="/user/signup"
@@ -128,6 +136,13 @@ function App() {
             setUserToken={setUserToken}
             visibleSignModal={visibleSignModal}
             setVisibleSignModal={setVisibleSignModal}
+          />
+        )}
+        {visibleModify && (
+          <Modal
+            userToken={userToken}
+            visibleModify={visibleModify}
+            setVisibleModify={setVisibleModify}
           />
         )}
       </Router>

@@ -102,7 +102,6 @@ export default function LoginPage({
         </label>
 
         <div className="form-bloc-down">
-          {" "}
           <button>Se Connecter</button>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <Link

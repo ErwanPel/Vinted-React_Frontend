@@ -110,6 +110,20 @@
   background-color: lightcoral;
 }
 
+.red_button_delete {
+  border: transparent;
+  border-radius: 5px;
+  background-color: lightcoral;
+  color: white;
+}
+
+.blue_button_modify {
+  border: transparent;
+  border-radius: 5px;
+  background-color: rgb(61, 153, 184);
+  color: white;
+}
+
 @media (max-width: 1150px) {
   .bloc-img-offer {
     height: 40rem;
@@ -150,7 +164,7 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 950px) {
   .offer-single {
     flex-direction: column;
     align-items: center;

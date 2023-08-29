@@ -1,5 +1,6 @@
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
+import ModifyOffer from "./ModifyOffer";
 
 import "../assets/css/signup-login.css";
 
@@ -9,6 +10,9 @@ export default function Modal({
   visibleLoginModal,
   visibleSignModal,
   setVisibleSignModal,
+  visibleModify,
+  setVisibleModify,
+  userToken,
 }) {
   const closeModalSign = () => {
     setVisibleSignModal(() => false);
@@ -18,10 +22,22 @@ export default function Modal({
     setVisibleLoginModal(() => false);
   };
 
+  const closeModify = () => {
+    setVisibleModify(() => false);
+  };
+
+  console.log("modal", userToken);
+
   return (
     <div
       className="modal-bloc"
-      onClick={visibleLoginModal ? closeModalLogin : closeModalSign}
+      onClick={
+        visibleLoginModal
+          ? closeModalLogin
+          : visibleSignModal
+          ? closeModalSign
+          : visibleModify && closeModify
+      }
     >
       <div
         className="modal-content"
@@ -34,6 +50,11 @@ export default function Modal({
         )}
         {visibleSignModal && (
           <button className="close-button" onClick={closeModalSign}>
+            X
+          </button>
+        )}
+        {visibleModify && (
+          <button className="close-button" onClick={closeModify}>
             X
           </button>
         )}
@@ -51,6 +72,13 @@ export default function Modal({
             visibleSignModal={visibleSignModal}
             setVisibleSignModal={setVisibleSignModal}
             closeModalSign={closeModalSign}
+          />
+        )}
+        {visibleModify && (
+          <ModifyOffer
+            userToken={userToken}
+            visibleModify={visibleModify}
+            setVisibleModify={setVisibleModify}
           />
         )}
       </div>
