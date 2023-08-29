@@ -26,8 +26,6 @@ export default function Modal({
     setVisibleModify(() => false);
   };
 
-  console.log("modal", userToken);
-
   return (
     <div
       className="modal-bloc"

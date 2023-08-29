@@ -22,7 +22,7 @@ export default function SoldPage({ userToken }) {
             },
           }
         );
-        console.log("ici", data);
+
         setData(data);
         setIsLoading(false);
       } else {
@@ -55,8 +55,6 @@ export default function SoldPage({ userToken }) {
                 {data.count > 1 ? "s" : ""}
               </p>
               {data.getOffer.map((item) => {
-                console.log(item);
-
                 return (
                   <div className="user-page" key={uid(item)}>
                     <div>

@@ -95,7 +95,7 @@ export default function SignUpPage({
     event.preventDefault();
     if (name && email && password) {
       const formData = new FormData();
-      console.log(name, picture, email, newsletter, password);
+
       formData.append("picture", picture);
       formData.append("username", name);
       formData.append("email", email);

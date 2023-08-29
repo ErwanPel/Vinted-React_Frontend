@@ -7,7 +7,6 @@ export default function SlideRange({ query, setQuery }) {
   const MAX = 500;
 
   const handlePrice = (values) => {
-    console.log(values[1]);
     let newQuery = { ...query };
     newQuery.values[0] = Math.round(values[0]);
     newQuery.values[1] = Math.round(values[1]);

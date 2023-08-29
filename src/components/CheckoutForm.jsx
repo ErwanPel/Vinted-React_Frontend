@@ -37,7 +37,7 @@ export default function CheckoutForm({ userToken, setOnPay }) {
       });
 
       const stripeToken = stripeResponse.token?.id;
-      console.log(stripeToken);
+
       try {
         const response = await axios.post(
           "https://site--backend-vinted--fwddjdqr85yq.code.run/pay",
@@ -54,7 +54,7 @@ export default function CheckoutForm({ userToken, setOnPay }) {
             },
           }
         );
-        console.log(response.data);
+
         setCompleted(true);
       } catch (error) {
         console.error(error.response);

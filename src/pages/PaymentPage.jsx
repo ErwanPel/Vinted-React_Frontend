@@ -9,7 +9,6 @@ export default function PaymentPage({ userToken, setOnPay }) {
   );
 
   const location = useLocation();
-  console.log("pay", location?.state);
 
   const price = location.state?.price;
   const name = location.state?.name;

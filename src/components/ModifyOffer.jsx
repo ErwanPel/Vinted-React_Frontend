@@ -63,7 +63,7 @@ export default function ModifyOffer({
               },
             }
           );
-          console.log(response.data);
+
           alert("l'offre a bien été modifié");
           setVisibleModify(false);
           navigate(0);

@@ -74,7 +74,6 @@ export default function HomePage({ isConnected, query, setQuery, setOnPay }) {
       setSelectPage(
         Array.from(Array(Math.ceil(response.data.count / query.limit)).keys())
       );
-      console.log("page", selectPage);
     } catch (error) {
       console.error(error);
       controller.abort();
@@ -90,15 +89,13 @@ export default function HomePage({ isConnected, query, setQuery, setOnPay }) {
   useEffect(() => {
     console.log("UseEffect activated");
     fetchData();
-    console.log(data);
+
     if (data !== undefined) {
       return () => {
         controller.abort();
       };
     }
   }, [query]);
-
-  console.log(query.page);
 
   return (
     <div>

@@ -23,15 +23,12 @@ export default function Publish({ userToken, query, setQuery, setOnPay }) {
 
   const navigate = useNavigate();
 
-  console.log("picture", picture, picture.length);
-
   const handleFiles = (event) => {
     setErrorMessage("");
     let filesList = [...picture];
     let previewList = [...previewPicture];
 
     for (let i = 0; i < event.length; i++) {
-      console.log(filesList.length);
       if (filesList.length === 6) {
         setErrorMessage("Vous ne pouvez pas publier plus de 6 photos");
         break;
@@ -56,7 +53,7 @@ export default function Publish({ userToken, query, setQuery, setOnPay }) {
           },
         }
       );
-      console.log(response.data);
+
       navigate("/");
     } catch (error) {
       console.log(error);

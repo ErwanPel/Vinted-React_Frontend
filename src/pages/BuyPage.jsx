@@ -56,8 +56,6 @@ export default function BuyPage({ userToken }) {
                 {data.count > 1 ? "s" : ""}
               </p>
               {data.getOffer.map((item) => {
-                console.log(item);
-
                 return (
                   <div className="user-page" key={uid(item)}>
                     <div>
@@ -77,8 +75,6 @@ export default function BuyPage({ userToken }) {
                       </div>
                       <div>
                         {item.product.product_details.map((detail) => {
-                          console.log(detail);
-
                           return (
                             <div key={uid(detail)}>
                               <span>{Object.keys(detail)}</span> :{" "}

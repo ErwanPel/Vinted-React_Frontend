@@ -34,7 +34,7 @@ export default function OfferPage({
       );
 
       setData(response.data);
-      console.log(response.data);
+
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -51,7 +51,7 @@ export default function OfferPage({
           },
         }
       );
-      console.log(response.data);
+
       alert("l'offre a bien été supprimé");
       navigate("/");
     } catch (error) {
@@ -164,7 +164,6 @@ export default function OfferPage({
                 )}
               </div>
 
-              {console.log(data.owner._id)}
               {data.bought ? (
                 <p className="sold-warn">Déjà vendu !</p>
               ) : data.owner_connect ? (
