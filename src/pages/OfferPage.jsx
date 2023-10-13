@@ -34,7 +34,7 @@ export default function OfferPage({
       );
 
       setData(response.data);
-
+      console.log("ici", response.data);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -155,12 +155,18 @@ export default function OfferPage({
             </div>
             <div>
               <div className="offer-title">
-                {!data?.bought === true && (
+                {!data.bought ? (
                   <>
                     <span>{data.product_name}</span>
                     <span>{data.product_description}</span>
                     <span>{data.owner.account.username}</span>
                   </>
+                ) : (
+                  data.seller_connect && (
+                    <>
+                      <span>{data.owner.account.username}</span>
+                    </>
+                  )
                 )}
               </div>
 
