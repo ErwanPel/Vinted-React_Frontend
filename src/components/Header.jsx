@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import logo from "../assets/img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -69,6 +70,8 @@ export default function Header({
     setOnPay(false);
   };
 
+  console.log("title", query.title);
+
   return (
     <header className="wrapper">
       <div>
@@ -82,8 +85,9 @@ export default function Header({
             <input
               type="text"
               name="searchBar"
+              value={query.title}
               id="searchBar"
-              placeholder="rechercher"
+              placeholder={"rechercher"}
               onChange={handleTitle}
             />
           </div>

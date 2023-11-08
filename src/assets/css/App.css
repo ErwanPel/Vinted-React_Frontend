@@ -63,6 +63,7 @@ h2 {
   height: fit-content;
   display: flex;
   flex-direction: column;
+  border-radius: 1rem;
 }
 
 main {

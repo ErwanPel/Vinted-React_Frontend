@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../assets/css/itemSoldBuy.css";
 
 export default function ItemSold({ item }) {
+  console.log("item sold", item);
   return (
     <div className="user-page" key={uid(item)}>
       <div>

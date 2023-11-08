@@ -3,6 +3,7 @@ import SignUpPage from "../pages/SignUpPage";
 import ModifyOffer from "./ModifyOffer";
 
 import "../assets/css/signup-login.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Modal({
   setUserToken,
@@ -43,17 +44,17 @@ export default function Modal({
       >
         {visibleLoginModal && (
           <button className="close-button" onClick={closeModalLogin}>
-            X
+            <FontAwesomeIcon icon="circle-xmark" color="#09B1BA" />
           </button>
         )}
         {visibleSignModal && (
           <button className="close-button" onClick={closeModalSign}>
-            X
+            <FontAwesomeIcon icon="circle-xmark" color="#09B1BA" />
           </button>
         )}
         {visibleModify && (
           <button className="close-button" onClick={closeModify}>
-            X
+            <FontAwesomeIcon icon="circle-xmark" color="#09B1BA" />
           </button>
         )}
         {visibleLoginModal && (

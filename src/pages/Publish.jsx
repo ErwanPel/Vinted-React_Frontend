@@ -107,6 +107,7 @@ export default function Publish({ userToken, query, setQuery, setOnPay }) {
 
   const playSearch = () => {
     let newQuery = { ...query };
+    newQuery["title"] = "";
     newQuery["page"] = 1;
     setQuery(newQuery);
     setOnPay(false);

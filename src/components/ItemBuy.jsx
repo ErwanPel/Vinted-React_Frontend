@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../assets/css/itemSoldBuy.css";
 
 export default function ItemBuy({ item }) {
+  console.log("item", item);
   return (
     <div className="user-page" key={uid(item)}>
       <div>
@@ -38,10 +39,10 @@ export default function ItemBuy({ item }) {
       <div>
         <p>Vendu par: </p>
         <div>
-          {item.product.owner.account.avatar !== "none" ? (
+          {item.product.seller.account.avatar !== "none" ? (
             <img
               className="profil"
-              src={item.product.owner.account?.avatar}
+              src={item.product.seller.account?.avatar}
               alt="image de l'achat"
             />
           ) : (
@@ -49,7 +50,7 @@ export default function ItemBuy({ item }) {
               <FontAwesomeIcon icon="user" />{" "}
             </div>
           )}{" "}
-          <span>{item.product.owner.account.username}</span>
+          <span>{item.product.seller.account.username}</span>
         </div>
       </div>
     </div>

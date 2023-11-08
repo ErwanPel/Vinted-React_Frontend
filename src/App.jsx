@@ -26,6 +26,7 @@ import {
   faAnglesRight,
   faAnglesLeft,
   faCircleNotch,
+  faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -37,7 +38,8 @@ library.add(
   faChevronLeft,
   faAnglesRight,
   faAnglesLeft,
-  faCircleNotch
+  faCircleNotch,
+  faCircleXmark
 );
 function App() {
   const [query, setQuery] = useState({
@@ -120,6 +122,8 @@ function App() {
                 userToken={userToken}
                 onPay={onPay}
                 setOnPay={setOnPay}
+                query={query}
+                setQuery={query}
               />
             }
           />

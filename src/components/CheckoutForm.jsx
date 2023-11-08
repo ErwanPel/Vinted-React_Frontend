@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, Navigate } from "react-router-dom";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
 import intl from "../assets/tools/intl";
@@ -7,7 +7,7 @@ import intl from "../assets/tools/intl";
 import "../assets/css/checkoutForm.css";
 import Loader from "./Loader";
 
-export default function CheckoutForm({ userToken, setOnPay }) {
+export default function CheckoutForm({ userToken, setOnPay, query, setQuery }) {
   const [completed, setCompleted] = useState(false);
   const [isUpload, setIsUpload] = useState(false);
 
@@ -26,7 +26,12 @@ export default function CheckoutForm({ userToken, setOnPay }) {
 
   // This function play the sort and range search of the header
   const playSearch = () => {
+    let newQuery = { ...query };
+    newQuery["title"] = "";
+    newQuery["page"] = 1;
+    setQuery(newQuery);
     setOnPay(false);
+    Navigate("/");
   };
 
   const handleSubmit = async (event) => {
@@ -135,10 +140,8 @@ export default function CheckoutForm({ userToken, setOnPay }) {
           <div className="thanks-bloc">
             <p>Merci pour votre achat</p>
 
-            <Link to="/">
-              <button type="button" onClick={playSearch}>
-                Retour à l'accueil
-              </button>
+            <Link to="/" onClick={playSearch}>
+              <button type="button">Retour à l'accueil</button>
             </Link>
           </div>
         )}

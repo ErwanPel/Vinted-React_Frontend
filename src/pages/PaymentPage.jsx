@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/CheckoutForm";
 
-export default function PaymentPage({ userToken, setOnPay }) {
+export default function PaymentPage({ userToken, setOnPay, setQuery, query }) {
   const stripePromise = loadStripe(
     "pk_test_51NZDzkEBjwRk59e2gvl5hjQkwJMqbVYG4Nz0TfEDUoKZNXkJlCvDVMxv6yk88xT9yffvE8DvEFg0Jdr8BoLVgNgf00czVRK3oN"
   );
@@ -17,7 +17,12 @@ export default function PaymentPage({ userToken, setOnPay }) {
 
   return userToken ? (
     <Elements stripe={stripePromise}>
-      <CheckoutForm userToken={userToken} setOnPay={setOnPay} />
+      <CheckoutForm
+        userToken={userToken}
+        setOnPay={setOnPay}
+        query={query}
+        setQuery={setQuery}
+      />
     </Elements>
   ) : (
     <Navigate
