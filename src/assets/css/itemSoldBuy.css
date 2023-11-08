@@ -1,27 +1,3 @@
-main.user-bloc {
-  background-color: #ebedee;
-  height: 100%;
-  width: 100%;
-}
-
-div.user-bloc {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  margin-top: 5rem;
-}
-
-.first-info {
-  display: flex;
-}
-
-div.user-bloc > p {
-  font-weight: bold;
-  font-size: 2rem;
-  margin-block: 3rem;
-}
-
 .user-page {
   padding: 2rem;
   border: 1px solid #ccc;
@@ -86,9 +62,18 @@ div.user-bloc > p {
 }
 
 .user-page img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  margin-left: 2rem;
+}
+
+img.profil {
+  background-color: red;
   width: 4rem;
   height: 4rem;
-  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid grey;
 }
 
 @media (max-width: 900px) {

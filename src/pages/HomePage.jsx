@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../assets/css/homePage.css";
 
 import Hero from "../components/Hero";
+import Loader from "../components/Loader";
 
 export default function HomePage({ isConnected, query, setQuery, setOnPay }) {
   const [data, setData] = useState();
@@ -102,7 +103,7 @@ export default function HomePage({ isConnected, query, setQuery, setOnPay }) {
       <Hero isConnected={isConnected} />
 
       {isLoading ? (
-        <p>Downloading ...</p>
+        <Loader />
       ) : (
         <main className="wrapper offer-bloc">
           {data.count > 0 ? (
@@ -122,14 +123,16 @@ export default function HomePage({ isConnected, query, setQuery, setOnPay }) {
               <div className="select-bloc">
                 <FontAwesomeIcon
                   icon="angles-left"
-                  onClick={(event) => getPage(1, event)}
+                  onClick={(event) => query.page !== 1 && getPage(1, event)}
                   className={query.page === 1 ? "unvisible" : "chevron"}
                 />
+
                 <FontAwesomeIcon
                   icon="chevron-left"
-                  onClick={() => getPage(query.page - 1)}
+                  onClick={() => query.page !== 1 && getPage(query.page - 1)}
                   className={query.page === 1 ? "unvisible" : "chevron"}
                 />
+
                 <select
                   name="page"
                   id="page"
@@ -144,16 +147,23 @@ export default function HomePage({ isConnected, query, setQuery, setOnPay }) {
                     );
                   })}
                 </select>
+
                 <FontAwesomeIcon
                   icon="chevron-right"
-                  onClick={() => getPage(query.page + 1)}
+                  onClick={() =>
+                    query.page !== selectPage.length && getPage(query.page + 1)
+                  }
                   className={
                     query.page === selectPage.length ? "unvisible" : "chevron"
                   }
                 />
+
                 <FontAwesomeIcon
                   icon="angles-right"
-                  onClick={(event) => getPage(selectPage.length, event)}
+                  onClick={(event) =>
+                    query.page !== selectPage.length &&
+                    getPage(selectPage.length, event)
+                  }
                   className={
                     query.page === selectPage.length ? "unvisible" : "chevron"
                   }
@@ -161,7 +171,9 @@ export default function HomePage({ isConnected, query, setQuery, setOnPay }) {
               </div>
             </>
           ) : (
-            <p>Pas de recherche</p>
+            <p className="no-search">
+              Aucun article n'a été trouvé parmi vos paramètres de recherche
+            </p>
           )}
         </main>
       )}

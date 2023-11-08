@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { uid } from "react-uid";
 
 import "../assets/css/publish.css";
+import Loader from "../components/Loader";
 
 export default function Publish({ userToken, query, setQuery, setOnPay }) {
   const [picture, setPicture] = useState([]);
@@ -20,6 +21,7 @@ export default function Publish({ userToken, query, setQuery, setOnPay }) {
   const [price, setPrice] = useState("");
   const [exchange, setExchange] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isUpload, setIsUpload] = useState(false);
 
   const navigate = useNavigate();
 
@@ -53,7 +55,7 @@ export default function Publish({ userToken, query, setQuery, setOnPay }) {
           },
         }
       );
-
+      setIsUpload(false);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -76,6 +78,7 @@ export default function Publish({ userToken, query, setQuery, setOnPay }) {
   };
 
   const handleSubmit = (event) => {
+    setIsUpload(true);
     event.preventDefault();
 
     if (picture.length > 0) {
@@ -97,6 +100,7 @@ export default function Publish({ userToken, query, setQuery, setOnPay }) {
 
       setData(formData);
     } else {
+      setIsUpload(false);
       setErrorMessage("Il faut au moins 1 photo pour publier une offre");
     }
   };
@@ -311,9 +315,15 @@ export default function Publish({ userToken, query, setQuery, setOnPay }) {
             </label>
           </div>
         </div>
-        <button className="sell-button" onClick={playSearch}>
-          Ajouter
-        </button>
+        {isUpload ? (
+          <div className="loader-button">
+            <Loader />
+          </div>
+        ) : (
+          <button className="sell-button" onClick={playSearch}>
+            Ajouter
+          </button>
+        )}
       </form>
     </main>
   ) : (

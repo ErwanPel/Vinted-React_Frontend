@@ -68,7 +68,6 @@ header button {
   border: 1px solid #09b1ba;
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 

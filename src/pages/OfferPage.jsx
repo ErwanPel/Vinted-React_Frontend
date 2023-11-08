@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 
 import "react-multi-carousel/lib/styles.css";
 import "../assets/css/offerPage.css";
+import Loader from "../components/Loader";
 
 export default function OfferPage({
   setOnPay,
@@ -101,14 +102,10 @@ export default function OfferPage({
     },
   };
 
-  // if (data?.bought === true) {
-  //   setTimeout(() => navigate("/"), 2000);
-  // }
-
   return (
     <>
       {isLoading ? (
-        <p>Downloading...</p>
+        <Loader />
       ) : (
         <main className="wrapper offer-single">
           <div className="bloc-img-offer">

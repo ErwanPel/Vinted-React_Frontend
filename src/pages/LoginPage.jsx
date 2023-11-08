@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import "../assets/css/signup-login.css";
+import Loader from "../components/Loader";
 
 export default function LoginPage({
   setUserToken,
@@ -15,6 +16,7 @@ export default function LoginPage({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isUpload, setIsUpload] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -66,10 +68,12 @@ export default function LoginPage({
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsUpload(true);
     setErrorMessage(() => "");
     if (email && password) {
       setDataLoginion({ email: email, password: password });
     }
+    setIsUpload(false);
   };
 
   return (
@@ -102,7 +106,7 @@ export default function LoginPage({
         </label>
 
         <div className="form-bloc-down">
-          <button>Se Connecter</button>
+          {isUpload ? <Loader /> : <button>Se Connecter</button>}
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <Link
             to="/user/signup"

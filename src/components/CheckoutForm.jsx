@@ -5,9 +5,11 @@ import axios from "axios";
 import intl from "../assets/tools/intl";
 
 import "../assets/css/checkoutForm.css";
+import Loader from "./Loader";
 
 export default function CheckoutForm({ userToken, setOnPay }) {
   const [completed, setCompleted] = useState(false);
+  const [isUpload, setIsUpload] = useState(false);
 
   const location = useLocation();
   const stripe = useStripe();
@@ -30,6 +32,7 @@ export default function CheckoutForm({ userToken, setOnPay }) {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
+      setIsUpload(true);
       const cardElement = elements.getElement(CardElement);
 
       const stripeResponse = await stripe.createToken(cardElement, {
@@ -59,6 +62,7 @@ export default function CheckoutForm({ userToken, setOnPay }) {
       } catch (error) {
         console.error(error.response);
       }
+      setIsUpload(false);
     } catch (error) {
       console.error(error.data);
     }
@@ -125,7 +129,7 @@ export default function CheckoutForm({ userToken, setOnPay }) {
               <CardElement />
             </div>
 
-            <button>Pay</button>
+            {isUpload ? <Loader /> : <button>Pay</button>}
           </>
         ) : (
           <div className="thanks-bloc">

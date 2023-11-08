@@ -48,6 +48,10 @@ main.offer-bloc > div > p {
   margin-bottom: 3rem;
 }
 
+.offer-home:hover {
+  opacity: 0.85;
+}
+
 .offer-home img {
   object-fit: cover;
   width: 100%;
@@ -76,8 +80,10 @@ main.offer-bloc > div > p {
 .select-bloc {
   margin: 0 auto;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 5rem;
+  width: 50rem;
 }
 
 select {
@@ -93,15 +99,24 @@ select {
 .chevron {
   font-size: 2.5rem;
   color: #2b9095;
+  padding: 0.5rem;
+  border-radius: 50%;
 }
 
 .chevron:hover {
   cursor: pointer;
+  background-color: #09b1ba;
+  color: white;
+}
+
+.chevron:active {
+  opacity: 0.7;
 }
 
 .select-bloc > .unvisible {
-  visibility: hidden;
-  margin-inline: 0.8rem;
+  opacity: 0;
+  font-size: 2.5rem;
+  padding: 0.5rem;
 }
 
 .offer-user {
@@ -135,6 +150,11 @@ select:hover {
   cursor: pointer;
 }
 
+p.no-search {
+  color: #09b1ba;
+  font-weight: bold;
+}
+
 @media (max-width: 650px) {
   .offers-cards {
     margin-top: 2rem;
@@ -145,13 +165,15 @@ select:hover {
   .offer-home {
     margin-bottom: 0;
   }
+
   .offer-home img.card-picture {
     object-fit: cover;
     width: 90%;
     height: 26rem;
   }
   .select-bloc {
-    gap: 2rem;
+    gap: 4rem;
+    width: 40rem;
   }
 
   select {
@@ -161,11 +183,9 @@ select:hover {
 
   .chevron {
     font-size: 2rem;
-
-    padding: 0.5rem;
   }
+
   .select-bloc > .unvisible {
-    visibility: hidden;
-    margin-inline: 0.9rem;
+    font-size: 2rem;
   }
 }

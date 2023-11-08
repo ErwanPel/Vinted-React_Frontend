@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { uid } from "react-uid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import intl from "../assets/tools/intl";
-
-import "../assets/css/buy-sold.css";
+import "../assets/css/buySoldPage.css";
+import ItemBuy from "../components/ItemBuy";
+import Loader from "../components/Loader";
+import { Navigate } from "react-router-dom";
 
 export default function BuyPage({ userToken }) {
   const [data, setData] = useState([]);
@@ -13,21 +14,17 @@ export default function BuyPage({ userToken }) {
 
   const fetchData = async () => {
     try {
-      if (userToken) {
-        const { data } = await axios.get(
-          "https://site--backend-vinted--fwddjdqr85yq.code.run/user/buy",
-          {
-            headers: {
-              authorization: `Bearer ${userToken}`,
-            },
-          }
-        );
+      const { data } = await axios.get(
+        "https://site--backend-vinted--fwddjdqr85yq.code.run/user/buy",
+        {
+          headers: {
+            authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
 
-        setData(data);
-        setIsLoading(false);
-      } else {
-        console.log("navigate");
-      }
+      setData(data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       console.log(error.response);
@@ -38,15 +35,17 @@ export default function BuyPage({ userToken }) {
     }
   };
 
+  console.log(isLoading);
+
   useEffect(() => {
     console.log("useEffect buy");
     fetchData();
   }, []);
 
-  return (
-    <main className="user-bloc">
+  return userToken ? (
+    <main className="user-bloc-main">
       {isLoading ? (
-        <p>Downloading ...</p>
+        <Loader />
       ) : (
         <div className="user-bloc wrapper">
           {!unfound ? (
@@ -56,53 +55,7 @@ export default function BuyPage({ userToken }) {
                 {data.count > 1 ? "s" : ""}
               </p>
               {data.getOffer.map((item) => {
-                return (
-                  <div className="user-page" key={uid(item)}>
-                    <div>
-                      <span>{item.date}</span>
-                      <span>statut : Achat</span>
-                    </div>
-                    <div className="data-product">
-                      <div>
-                        <span>{item.product.product_name}</span>
-                        <div>
-                          <span>{intl.format(item.product.product_price)}</span>
-                          <img
-                            src={item.product.product_image[0].secure_url}
-                            alt="image de l'achat"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        {item.product.product_details.map((detail) => {
-                          return (
-                            <div key={uid(detail)}>
-                              <span>{Object.keys(detail)}</span> :{" "}
-                              <span>{Object.values(detail)} </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    <div>
-                      <p>vendu par : </p>
-                      <div>
-                        {item.product.owner.account.avatar !== "none" ? (
-                          <img
-                            src={item.product.owner.account.avatar}
-                            alt="photo de profil du vendeur"
-                          />
-                        ) : (
-                          <div className="icon-user-empty">
-                            <FontAwesomeIcon icon="user" />{" "}
-                          </div>
-                        )}{" "}
-                        <span>{item.product.owner.account.username}</span>
-                      </div>
-                    </div>
-                  </div>
-                );
+                return <ItemBuy item={item} key={item.product._id} />;
               })}
             </>
           ) : (
@@ -111,5 +64,7 @@ export default function BuyPage({ userToken }) {
         </div>
       )}
     </main>
+  ) : (
+    <Navigate to="/" />
   );
 }

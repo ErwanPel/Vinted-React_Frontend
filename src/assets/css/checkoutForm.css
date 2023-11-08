@@ -94,5 +94,6 @@ main.pay {
 
 @media (max-width: 710px) {
   .pay-form-bloc {
-    width: 40rem
+    width: 40rem;
+  }
 }

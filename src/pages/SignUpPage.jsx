@@ -7,6 +7,7 @@ import Dropzone from "react-dropzone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "../assets/css/signup-login.css";
+import Loader from "../components/Loader";
 
 export default function SignUpPage({
   setUserToken,
@@ -21,6 +22,7 @@ export default function SignUpPage({
   const [picture, setPicture] = useState({});
   const [previewPicture, setPreviewPicture] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isUpload, setIsUpload] = useState(false);
 
   const navigate = useNavigate();
 
@@ -94,6 +96,7 @@ export default function SignUpPage({
   const handleSubmit = (event) => {
     event.preventDefault();
     if (name && email && password) {
+      setIsUpload(true);
       const formData = new FormData();
 
       formData.append("picture", picture);
@@ -104,6 +107,7 @@ export default function SignUpPage({
 
       setDataForm(formData);
       setMailAdmin({ username: name, email: email, newsletter: newsletter });
+      setIsUpload(false);
     }
   };
 
@@ -203,7 +207,7 @@ export default function SignUpPage({
             Conditions et Politique de Confidentialité de Vinted. Je confirme
             avoir au moins 18 ans.
           </p>
-          <button>S'inscrire</button>
+          {isUpload ? <Loader /> : <button>S'inscrire</button>}
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <Link to="/user/login" onClick={visibleSignModal && closeModalSign}>
             <span className="question-user">
