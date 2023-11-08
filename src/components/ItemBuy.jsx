@@ -3,7 +3,7 @@ import { uid } from "react-uid";
 import intl from "../assets/tools/intl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import "../assets/css/ItemSoldBuy.css";
+import "../assets/css/itemSoldBuy.css";
 
 export default function ItemBuy({ item }) {
   return (
