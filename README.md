@@ -2,7 +2,7 @@
 
 <img
 		width="600"
-		alt="AirBnB app - React Native"
+		alt="Vinted picture"
 		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_homepage.png">
 </h2>
 
@@ -23,9 +23,9 @@ VINTED fronted
 
 ## Tech Stack
 
-**Client:** React
+**Client:** React.js
 
-[**Server:**](https://github.com/ErwanPel/Vinted-Backend) Node, Express
+[**Server:**](https://github.com/ErwanPel/Vinted-Backend) Node.js, Express.js, MongoDB
 
 
 ## Overview
@@ -69,11 +69,7 @@ The header allows users to filter their search by product name, ascending or des
 			width="400"
 		alt="PublishPage"
 		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_PublishPage.png">
- <img
-		width="400"
-		alt="PaymentPage"
-		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_paymentpage.png">
- 
+
   <img
 		width="400"
 		alt="BuyPage"
@@ -82,39 +78,39 @@ The header allows users to filter their search by product name, ascending or des
 		width="400"
 		alt="SoldPage"
 		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_SoldPage.png">
+  <img
+		width="400"
+		alt="PaymentPage"
+		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_paymentpage.png">
  
 </div>
 
-## Installation and usage
-
-Be sure, you have installed Node.js : [Node.js](https://nodejs.org/en). You have to install the "LTS" version.
 
 ### Running the project
 
 Clone this repository :
 
 ```
-git clone https://github.com/ErwanPel/Vinted-Backend.git
-cd Vinted-Backend
+git clone https://github.com/ErwanPel/Vinted-frontend.git
+cd Vinted-frontend
 ```
 
 Install packages :
 
 ```
-npm install
+yarn 
 
 ```
 
 When installation is complete, you have to launch  :
 
 ```
-npx nodemon index.js
+yarn dev
 
 ```
 
-You can test different server routes with software such as [Postman](https://www.postman.com/) or [Insomnia](https://insomnia.rest/).
 
-You can see the client side for this Vinted Project [here](https://github.com/ErwanPel/Vinted-frontend).
+You can see the server side for this Vinted Project [here](https://github.com/ErwanPel/Vinted-Backend).
 
 ## Star, Fork, Clone & Contribute
 
