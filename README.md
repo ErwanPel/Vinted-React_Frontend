@@ -7,7 +7,7 @@
 </h2>
 
 <h1 align="center">
-VINTED fronted
+VINTED frontend
 
 </h1>
 
@@ -34,14 +34,14 @@ This replica of Vinted is the guiding thread project carried out during the "Le 
 
 This client-side Vinted project uses 8 pages:
 
-1) HomePage: Displays a list of offers limited to 20 products per page. A pagination system allows you to change pages.
-2) OfferPage: Displays an offer page with all the information and associated photos. If the offer belongs to the logged-in user who published it, he can delete or modify it.
-3) SignPage: Displays the registration form.
-4) LoginPage: Displays the login form.
-5) PublishPage: Displays a form for entering information and at least one photo to publish an offer. The number of photos is limited to 6 per offer. Access to this page requires a valid login.
-6) PaymentPage: Displays product information and credit card details. Access to this page requires a valid login.
-7) BuyPage: Displays the user's purchases. Access to this page requires a valid login.
-8) SoldPage: Displays the user's sales. Access to this page requires a valid login.
+1) HomePage: displays a list of offers limited to 20 products per page. A pagination system allows you to change pages.
+2) OfferPage: displays an offer page with all the information and associated photos. If the offer belongs to the logged-in user who published it, he can delete or modify it.
+3) SignPage: displays the registration form.
+4) LoginPage: displays the login form.
+5) PublishPage: displays a form for entering information and at least one photo to publish an offer. The number of photos is limited to 6 per offer. Access to this page requires a valid login.
+6) BuyPage: displays the user's purchases. Access to this page requires a valid login.
+7) SoldPage: displays the user's sales. Access to this page requires a valid login.
+8) PaymentPage: displays product information and credit card details. Access to this page requires a valid login.
 
 </br>
 The header allows users to filter their search by product name, ascending or descending price, or price range.
