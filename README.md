@@ -49,35 +49,43 @@ The header allows users to filter their search by product name, ascending or des
 ## Screenshots
 
 <div align="center">
+	<p>HomePage</p>
 <img
 		width="400"
 		alt="HomePage"
 		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_homepage.png">
+	<p>OfferPage</p>
 <img	
     width="400"
 		alt="OfferPage"
 		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_offerPage.png">
+	<p>SignInPage</p>
  <img
 			width="400"
 		alt="SignInPage"
 		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_SignPage.png">
+	<p>LoginPage</p>
 <img
 			width="400"
 		alt="LoginPage"
 		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_Login.png">
+	<p>PublishPage</p>
 <img
 			width="400"
 		alt="PublishPage"
 		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_PublishPage.png">
+  <p>BuyPage</p>
 
   <img
 		width="400"
 		alt="BuyPage"
 		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_Buypage.png">
+  <p>SoldPage</p>
   <img
 		width="400"
 		alt="SoldPage"
 		src="https://github.com/ErwanPel/Vinted-frontend/blob/main/src/assets/img/Vinted_SoldPage.png">
+  <p>PaymentPage</p>
   <img
 		width="400"
 		alt="PaymentPage"
